@@ -1,12 +1,10 @@
 import './App.css'
-import { Signin } from './pages/Signin/'
-import { Header } from './components/Header'
+import { Router } from './routes/index'
 
 function App() {
   return (
     <>
-      <Header/>
-      <Signin/>
+      <Router/>
     </>
   )
 }

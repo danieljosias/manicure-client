@@ -5,7 +5,7 @@ import { IoMdLogOut } from "react-icons/io";
 
 export const Header = () =>{
     return(
-        <Flex justify-content='center'>
+        <Flex alignItems='center'>
             <Image src={Logo} alt='logo do site' w='100px' h='100px'/>
             
             <Link to="/clientes" >Clientes</Link>
