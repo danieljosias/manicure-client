@@ -26,17 +26,22 @@ export const Header = () => {
             <Box>
                 {!isOpen ? <IconButton onClick={handleOpenMenu} aria-label='botão do menu' icon={<GiHamburgerMenu/>} bg='transparent' fontSize='40px' border='none' w='100px' h='100px'/> : <IconButton onClick={handleCloseMenu} aria-label='botão do fechar menu' icon={<IoMdClose />} bg='transparent' border='none' w='100px' h='100px' fontSize='40px'/>}
             </Box>
-
-           {/* display absolute e relative  */}    
-           {/* {!isOpen &&
-            <>
-                <Flex flexDirection='column' gap='10'>
-                    <Link to="/clients">Clientes</Link>
-                    <Link to="/schedules">Agendamentos</Link>
-                    <Link to="/finances">Finanças</Link>
-                </Flex>
-            </>
-            } */}
+  
+           {isOpen &&
+            <Flex flexDirection='column' textAlign='center' position='absolute' top='110px' bg='#D9D9D9' w='100%' p='10px'>
+                <Box>
+                    <Box h='50px' _hover={{'background-color': '#F3CBCB'}} p='20px'>
+                        <Link to="/clients">Clientes</Link>
+                    </Box>
+                    <Box h='50px' _hover={{'background-color': '#F3CBCB'}} p='20px'>
+                        <Link to="/schedules">Agendamentos</Link>
+                    </Box>
+                    <Box h='50px' _hover={{'background-color': '#F3CBCB'}} p='20px'>
+                        <Link to="/finances">Finanças</Link>
+                    </Box>
+                </Box>
+            </Flex>
+            }
                 
             {/* <IconButton aria-label='botão de deslogar' icon={<IoMdLogOut />} bg='transparent' border='none' size='' variant='' isRound={''} w='100px' h='100px'/> */}
         </Flex>
