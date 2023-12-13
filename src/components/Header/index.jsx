@@ -5,9 +5,11 @@ import Logo from '../../assets/logo.png'
 import { IoMdLogOut } from 'react-icons/io'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
+import { useHistory } from 'react-router-dom'; 
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const history = useHistory()
 
     const handleOpenMenu = () => {
         setIsOpen(true)
@@ -17,6 +19,9 @@ export const Header = () => {
         setIsOpen(false)
     }
 
+    const handleLogout= () => {
+        history.push ('/signin');
+    }
     return(
         <Flex h='110px' bg='#F3CBCB' justifyContent='space-between'>
             <Box>
@@ -25,6 +30,7 @@ export const Header = () => {
             
             <Box>
                 {!isOpen ? <IconButton onClick={handleOpenMenu} aria-label='botão do menu' icon={<GiHamburgerMenu/>} bg='transparent' fontSize='40px' border='none' w='100px' h='100px'/> : <IconButton onClick={handleCloseMenu} aria-label='botão do fechar menu' icon={<IoMdClose />} bg='transparent' border='none' w='100px' h='100px' fontSize='40px'/>}
+                <IconButton onClick={handleLogout} aria-label='botão de deslogar' icon={<IoMdLogOut />} bg='transparent' border='none' fontSize='40px' w='100px' h='100px'/>
             </Box>
   
            {isOpen &&
@@ -41,7 +47,6 @@ export const Header = () => {
             </Flex>
             }
                 
-            {/* <IconButton aria-label='botão de deslogar' icon={<IoMdLogOut />} bg='transparent' border='none' size='' variant='' isRound={''} w='100px' h='100px'/> */}
         </Flex>
     )
 }
