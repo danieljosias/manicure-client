@@ -3,10 +3,10 @@ import { useState } from 'react'
 import {
   FormControl,
   FormErrorMessage,
+  FormLabel,
   Input,
   Button,
   Heading,
-  Flex,
   Icon,
   Box,
   HStack,
@@ -18,10 +18,12 @@ export const Clients = () => {
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [cellphone, setCellphone] = useState('')
+  const [observation, setObservation] = useState('')
 
   const handleNameChange = (e) => setName(e.target.value)
   const handleAddressChange = (e) => setAddress(e.target.value)
   const handleCellphoneChange = (e) => setCellphone(e.target.value)
+  const handleObservationChange = (e) => setObservation(e.target.value)
   
   const isNameError = name === ''
   const isAddressError = address === ''
@@ -50,7 +52,10 @@ export const Clients = () => {
           {cellphone === '' ? <FormErrorMessage fontWeight='bold' h='30px'>Celular é obrigatório.</FormErrorMessage> : <FormErrorMessage fontWeight='bold' h='30px'>Celular</FormErrorMessage>}
           <Input h='30px' type='text' value={cellphone} onChange={handleCellphoneChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite o celular do cliente'/>
           
-          <Button h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={'black'}>Entrar</Button>
+          <FormLabel fontWeight='bold' h='25px'>Observações</FormLabel>
+          <Input h='30px' type='text' value={observation} onChange={handleObservationChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite algo sobre o cliente'/>
+
+          <Button h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={'black'}>Criar</Button>
         </FormControl>
       </VStack>
     </>
