@@ -7,8 +7,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import { useHistory } from 'react-router-dom'; 
 
-export const Header = () => {
-    const [isOpen, setIsOpen] = useState(false)
+export const Header = ({isOpen, setIsOpen}) => {
     const history = useHistory()
 
     const handleOpenMenu = () => {
