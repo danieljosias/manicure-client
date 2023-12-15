@@ -66,7 +66,7 @@ export const Clients = () => {
       </VStack>
 
       
-      <Flex flexDirection='column' justifyContent='center' alignItems='center' gap='10' p='30px'>
+      <Flex flexDirection='column' alignItems='center' gap='10' p='30px'>
         <HStack spacing={10} h='30px' textAlign='center'>
           <Box h='0px'>
             <Heading as='h3'>Listagem de Clientes</Heading>
