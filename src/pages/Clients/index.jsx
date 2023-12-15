@@ -11,8 +11,10 @@ import {
   Box,
   HStack,
   VStack,
+  Flex,
 } from '@chakra-ui/react'
 import { IoMdPeople } from "react-icons/io";
+import { ClientsCard } from '../../components/ClientsCard'
 
 export const Clients = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -33,7 +35,7 @@ export const Clients = () => {
   return(
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen}/>
-      <VStack>
+      <VStack  p='20px'>
         <HStack spacing={10} h='30px' textAlign='center'>
           <Box h='0px'>
             <Heading as='h3'>Criação de Clientes</Heading>
@@ -62,6 +64,24 @@ export const Clients = () => {
           }
         </FormControl>
       </VStack>
+
+      
+      <Flex flexDirection='column' justifyContent='center' alignItems='center' gap='10' p='30px'>
+        <HStack spacing={10} h='30px' textAlign='center'>
+          <Box h='0px'>
+            <Heading as='h3'>Listagem de Clientes</Heading>
+          </Box>
+          <Box h='0px'>
+            <Icon as={IoMdPeople} fontSize='20px'/>
+          </Box>
+        </HStack>
+
+        <Flex bg='#F3CBCB' gap='10px' flexDirection='column' justifyContent='center' borderRadius='0px 10px 0px 10px' p='25' >
+          <ClientsCard/>
+        </Flex>    
+
+      </Flex>
+      
     </>
   )
 }
