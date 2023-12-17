@@ -1,14 +1,13 @@
-import { useState } from "react";
 import { Flex, Box, Image, IconButton} from "@chakra-ui/react"
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
 import { IoMdLogOut } from 'react-icons/io'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
-import { useHistory } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
 export const Header = ({isOpen, setIsOpen}) => {
-    const history = useHistory()
+    const navigate = useNavigate();
 
     const handleOpenMenu = () => {
         setIsOpen(true)
@@ -19,8 +18,9 @@ export const Header = ({isOpen, setIsOpen}) => {
     }
 
     const handleLogout= () => {
-        history.push ('/signin');
+        navigate('/signin');
     }
+    
     return(
         <Flex h='110px' bg='#F3CBCB' justifyContent='space-between'>
             <Box>
