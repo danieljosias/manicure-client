@@ -69,14 +69,16 @@ export const Clients = () => {
         </Box>
         
         <Flex flexDirection='column' gap='20px'>
-          <HStack spacing={10} h='30px' textAlign='center' alignItems='center' justifyContent='center'>
-            <Box h='0px'>
-              <Heading as='h3'>Listagem de Clientes</Heading>
-            </Box>
-            <Box h='0px'>
-              <Icon as={IoMdPeople} fontSize='20px'/>
-            </Box>
-          </HStack>
+          <Box>
+            <HStack spacing={10} h='30px' textAlign='center' alignItems='center' justifyContent='center'>
+              <Box h='0px'>
+                <Heading as='h3'>Listagem de Clientes</Heading>
+              </Box>
+              <Box h='0px'>
+                <Icon as={IoMdPeople} fontSize='20px'/>
+              </Box>
+            </HStack>
+          </Box>
 
           <Flex bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
             <ClientsCard/>
