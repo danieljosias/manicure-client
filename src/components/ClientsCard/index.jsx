@@ -5,10 +5,10 @@ export const ClientsCard = () => {
     return(
         <Flex bg='white' justifyContent='space-between' p='25' borderRadius='0px 10px 0px 10px' h='200px'>
             <Box>
-                <Heading as='h3' h='40'>Nome: xxxxxxxxxxxxxxxxxxxxx</Heading>
-                <Heading as='h3' h='40'>Endereço: xxxxxxxxxxxxxxxxxxxxx</Heading>
-                <Heading as='h3' h='40'>Celular: xxxxxxxxxxxxxxxxxxxxx</Heading>
-                <Heading as='h3' h='40'>Observações: xxxxxxxxxxxxxxxxxxxxx</Heading>
+                <Text as='h3' h='40'>Nome: xxxxxxxxxxxxxxxxxxxxx</Text>
+                <Text as='h3' h='40'>Endereço: xxxxxxxxxxxxxxxxxxxxx</Text>
+                <Text as='h3' h='40'>Celular: xxxxxxxxxxxxxxxxxxxxx</Text>
+                <Text as='h3' h='40'>Observações: xxxxxxxxxxxxxxxxxxxxx</Text>
             </Box>
             
             <Box>
@@ -17,10 +17,6 @@ export const ClientsCard = () => {
                     <IconButton aria-label='deletar' icon={<EditIcon />}color='red' border='none' bg='transparent' h='0' fontSize='20px'/>
                 </HStack>
             </Box>
-            {/* <FormControl display='none' justifyContent='center' textAlign='center' alignItems='center' bg='#D9D9D9' w='100px' h='100px' borderRadius='0px 10px 0px 10px'>
-                <Input for='file' type='file'/>
-                <FormLabel id='file' fontWeight='bold' h='0'>Foto</FormLabel>
-            </FormControl> */}
         </Flex>
     )   
 }
