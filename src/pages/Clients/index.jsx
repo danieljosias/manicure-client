@@ -33,19 +33,19 @@ export const Clients = () => {
   const isCelphoneError = cellphone === ''
 
   return(
-    <>
+    <Flex flexDirection='column'>
       <Header isOpen={isOpen} setIsOpen={setIsOpen}/>
-      <VStack  p='20px'>
-        <HStack spacing={10} h='30px' textAlign='center'>
+      <Box m='20px'>
+        <HStack spacing={10} h='30px' textAlign='center' alignItems='center' justifyContent='center'>
           <Box h='0px'>
-            <Heading as='h3'>Criação de Clientes</Heading>
+            <Heading as='h3' h='0px'>Criação de Clientes</Heading>
           </Box>
           <Box h='0px'>
             <Icon as={IoMdPeople} fontSize='20px'/>
           </Box>
         </HStack>
 
-        <FormControl isInvalid={{isNameError, isAddressError, isCelphoneError}} display='flex' gap='10px' flexDirection='column' justifyContent='center' bg='#F3CBCB' borderRadius='0px 10px 0px 10px' p='25' h='450px' w='350px'>
+        <FormControl isInvalid={{isNameError, isAddressError, isCelphoneError}} display='flex' gap='10px' flexDirection='column' justifyContent='center' bg='#F3CBCB' borderRadius='0px 10px 0px 10px' p='25' h='450px'>
           {name === '' ? <FormErrorMessage fontWeight='bold' h='30px'>Nome é obrigatório.</FormErrorMessage> : <FormErrorMessage fontWeight='bold' h='30px'>Nome</FormErrorMessage>}
           <Input h='30px' type='text' value={name} onChange={handleNameChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite o nome do cliente'/>
           
@@ -63,11 +63,10 @@ export const Clients = () => {
           <Button display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
           }
         </FormControl>
-      </VStack>
+      </Box>
 
-      
-      <Flex flexDirection='column' alignItems='center' gap='10' p='30px'>
-        <HStack spacing={10} h='30px' textAlign='center'>
+      <Flex flexDirection='column' /* alignItems='center' gap='10' p='30px' */>
+        <HStack spacing={10} h='30px' textAlign='center' alignItems='center'>
           <Box h='0px'>
             <Heading as='h3'>Listagem de Clientes</Heading>
           </Box>
@@ -76,12 +75,11 @@ export const Clients = () => {
           </Box>
         </HStack>
 
-        <Flex bg='#F3CBCB' gap='10px' flexDirection='column' justifyContent='center' borderRadius='0px 10px 0px 10px' p='25' >
+        <Flex bg='#F3CBCB' flexDirection='column' borderRadius='0px 10px 0px 10px' p='25'>
           <ClientsCard/>
         </Flex>    
 
       </Flex>
-      
-    </>
+    </Flex>
   )
 }
