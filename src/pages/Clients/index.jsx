@@ -82,6 +82,10 @@ export const Clients = () => {
 
           <Flex bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
             <ClientsCard isOpen={isOpen}/>
+
+            <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
+              <Heading as='h3'>Total: R$ xx,xx</Heading>
+            </Box>
           </Flex>    
         </Flex>
       </Flex>
