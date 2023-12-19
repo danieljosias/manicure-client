@@ -81,8 +81,7 @@ export const Clients = () => {
           </Box>
 
           <Flex bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
-            <ClientsCard/>
-            <ClientsCard/>
+            <ClientsCard isOpen={isOpen}/>
           </Flex>    
         </Flex>
       </Flex>
