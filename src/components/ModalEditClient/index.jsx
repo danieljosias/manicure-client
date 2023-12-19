@@ -1,19 +1,23 @@
 import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
 } from '@chakra-ui/react'
-
+import { useRef } from 'react'
 
 export const ModalEditClient = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
   
-    const initialRef = React.useRef(null)
-    const finalRef = React.useRef(null)
+    const initialRef = useRef(null)
+    const finalRef = useRef(null)
   
     return (
       <>
