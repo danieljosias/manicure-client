@@ -16,7 +16,6 @@ import {
 import { IoMdPeople } from "react-icons/io";
 import { ClientsCard } from '../../components/ClientsCard'
 
-
 export const Clients = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [name, setName] = useState('')
