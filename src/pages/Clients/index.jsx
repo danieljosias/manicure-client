@@ -16,6 +16,7 @@ import {
 import { IoMdPeople } from "react-icons/io";
 import { ClientsCard } from '../../components/ClientsCard'
 
+
 export const Clients = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [name, setName] = useState('')
@@ -79,7 +80,8 @@ export const Clients = () => {
               </Box>
             </HStack>
           </Box>
-
+          
+          
           <Flex bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
             <ClientsCard isOpen={isOpen}/>
 
