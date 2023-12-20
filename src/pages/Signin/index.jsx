@@ -20,6 +20,10 @@ export const Signin = () =>{
   const isNameError = name === ''
   const isEmailError = password === ''
   
+  const handleSignin = () => {
+    
+  }
+
   return(
     <Flex flexDirection='column' alignItems='center' justifyContent='center' textAlign='center' h='100vh' gap='5'>
       <Heading as='h1' >Entrar</Heading>
@@ -32,7 +36,7 @@ export const Signin = () =>{
         {password === '' ? <FormErrorMessage h='0px' fontWeight='bold'>Senha é obrigatória.</FormErrorMessage> : <FormErrorMessage h='0px' fontWeight='bold' >Senha</FormErrorMessage>}
         <Input h='40px' type='password' value={password} onChange={handlePasswordChange} border='none' bg='#000000' color='#FFFFFF' borderRadius='6px' fontWeight='bold' fontSize='large'/>
         
-        <Button h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>Entrar</Button>
+        <Button onClick={handleSignin} h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>Entrar</Button>
       </FormControl>
   </Flex>
   )
