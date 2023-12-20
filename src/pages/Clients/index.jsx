@@ -79,7 +79,8 @@ export const Clients = () => {
               </Box>
             </HStack>
           </Box>
-
+          
+          
           <Flex bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
             <ClientsCard isOpen={isOpen}/>
 
