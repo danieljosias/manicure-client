@@ -1,6 +1,7 @@
 import { Card, Text, IconButton, FormControl, Input, Box, Flex, FormLabel, VStack, Heading, HStack} from '@chakra-ui/react'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { ModalEditSchedule } from '../ModalEditSchedule'
+import { ModalDeleteSchedule } from '../ModalDeleteSchedule'
 
 export const SchedulesCard = ({isOpen}) => {
     return(
@@ -16,7 +17,7 @@ export const SchedulesCard = ({isOpen}) => {
             
             <Box>
                 <HStack h='0'>
-                    {!isOpen ? <IconButton aria-label='deletar' icon={<DeleteIcon />}  color='red' border='none' bg='transparent' h='0' fontSize='20px'/> : ''}
+                    {!isOpen ? <ModalDeleteSchedule/> : ''}
                     {!isOpen ? <ModalEditSchedule/> : ''}
                 </HStack>
             </Box>
