@@ -20,8 +20,13 @@ export const Signin = () =>{
   const isNameError = name === ''
   const isEmailError = password === ''
   
+  const users = {
+    name: name,
+    password: password,
+  }
+
   const handleSignin = () => {
-    
+    console.log(users)
   }
 
   return(
