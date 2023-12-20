@@ -1,5 +1,6 @@
 import { Card, Text, IconButton, FormControl, Input, Box, Flex, FormLabel, VStack, Heading, HStack} from '@chakra-ui/react'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
+import { ModalEditFinance } from '../ModalEditFinance'
 
 export const FiancesCard = ({isOpen}) => {
     return(
@@ -12,8 +13,8 @@ export const FiancesCard = ({isOpen}) => {
             
             <Box>
                 <HStack h='0'>
-                    {!isOpen ? <IconButton aria-label='editar' icon={<DeleteIcon />} color='blue' border='none' bg='transparent' h='0' fontSize='20px'/> : ''}
-                    {!isOpen ? <IconButton aria-label='deletar' icon={<EditIcon />}color='red' border='none' bg='transparent' h='0' fontSize='20px'/> : ''}
+                    {!isOpen ? <IconButton aria-label='deletar' icon={<DeleteIcon />} color='red' border='none' bg='transparent' h='0' fontSize='20px'/> : ''}
+                    {!isOpen ? <ModalEditFinance/> : ''}
                 </HStack>
             </Box>
         </Flex>
