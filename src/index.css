@@ -17,3 +17,10 @@ button{
 input[type='file']{
     display: none;
 }
+
+:root{
+    --toastify-color-success: #F3CBCB;
+    --toastify-color-error: #F3CBCB;
+    --toastify-icon-color-success: var(--toastify-color-success);
+    --toastify-icon-color-error: var(--toastify-color-error);
+}

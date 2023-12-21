@@ -8,39 +8,43 @@ import {
   Heading,
   Flex,
   Box,
-  useToast,
 } from '@chakra-ui/react'
 import { ApiContext } from '../../providers/api'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export const Signin = () =>{
+  const { login } = useContext(ApiContext)
+  
+  const navigate = useNavigate()
+  
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
-  const { createAdmin } = useContext(ApiContext)
-  const navigate = useNavigate()
 
   const handleNameChange = (e) => setName(e.target.value)
   const handlePasswordChange = (e) => setPassword(e.target.value)
   
   const isNameError = name === ''
   const isEmailError = password === ''
-
-  const toast = useToast()
   
   const data = {
-    "user":{
-      username: name,
-      password: password,
-    }
+    username: name,
+    password: password
   }
 
   const handleSignin = async () => {
-    const res = await createAdmin(data)
-    console.log(res)
+    const res = await login(data)
+    
     if(res.name === 'AxiosError'){
-      toast({description: 'Nome ou senha inválidos!', status: 'error', duration: 4000})
+      toast.error("Nome ou senha inválidos!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
     }else{
-      toast({title: 'Seja bem-vindo(a)!', status: 'success', duration: 4000})
+      toast.success("Seja bem-vinda!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
       navigate('/clients/')
     }
   }
