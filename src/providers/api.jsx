@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react'
-import { api } from '../services/services'
+import { api } from '../services/services.js'
 export const ApiContext = createContext([])
 
 export const ApiProvider = ({children}) => {
