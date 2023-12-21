@@ -5,15 +5,6 @@ export const ApiContext = createContext([])
 export const ApiProvider = ({children}) => {
     let token = localStorage?.getItem('token')
 
-    async function createAdmin(data){
-        try {
-            const res = await api.post('/admins/', data)
-            return res
-        } catch (error) {
-           return error
-        }
-    }
-
     async function login(data){
         try {
             const res = await api.post('/login/', data)
@@ -134,8 +125,7 @@ export const ApiProvider = ({children}) => {
 
     return(
         <ApiContext.Provider 
-            value={{createAdmin,
-            login,
+            value={{login,
             createClients,
             listClients,
             updateCLients,

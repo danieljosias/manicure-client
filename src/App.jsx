@@ -1,7 +1,7 @@
 import './App.css'
 import { Router } from './routes/routes'
-import { createStandaloneToast } from '@chakra-ui/react'
-const { ToastContainer } = createStandaloneToast()
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
