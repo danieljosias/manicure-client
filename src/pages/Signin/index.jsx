@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import {
   FormControl,
   FormLabel,
@@ -8,25 +8,41 @@ import {
   Heading,
   Flex,
   Box,
+  useToast,
 } from '@chakra-ui/react'
+import { ApiContext } from '../../providers/api'
+import { useNavigate } from 'react-router-dom'
 
 export const Signin = () =>{
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
+  const { createAdmin } = useContext(ApiContext)
+  const navigate = useNavigate()
 
   const handleNameChange = (e) => setName(e.target.value)
   const handlePasswordChange = (e) => setPassword(e.target.value)
   
   const isNameError = name === ''
   const isEmailError = password === ''
+
+  const toast = useToast()
   
-  const users = {
-    name: name,
-    password: password,
+  const data = {
+    "user":{
+      username: name,
+      password: password,
+    }
   }
 
-  const handleSignin = () => {
-    console.log(users)
+  const handleSignin = async () => {
+    const res = await createAdmin(data)
+    console.log(res)
+    if(res.name === 'AxiosError'){
+      toast({description: 'Nome ou senha inválidos!', status: 'error', duration: 4000})
+    }else{
+      toast({title: 'Seja bem-vindo(a)!', status: 'success', duration: 4000})
+      navigate('/clients/')
+    }
   }
 
   return(
