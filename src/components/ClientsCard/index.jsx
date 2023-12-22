@@ -3,14 +3,14 @@ import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { ModalEditClient } from '../../components/ModalEditClient';
 import { ModalDeleteClient } from '../ModalDeleteClient';
 
-export const ClientsCard = ({isOpen}) => {
+export const ClientsCard = ({isOpen, client}) => {
     return(
         <Flex bg='white' justifyContent='space-between' p='25' borderRadius='0px 10px 0px 10px' h='200px'>
             <Box>
-                <Text as='h3' h='40'>Nome: xxxxxxxxxxxxxxxxxxxxx</Text>
-                <Text as='h3' h='40'>Endereço: xxxxxxxxxxxxxxxxxxxxx</Text>
-                <Text as='h3' h='40'>Celular: xxxxxxxxxxxxxxxxxxxxx</Text>
-                <Text as='h3' h='40'>Observações: xxxxxxxxxxxxxxxxxxxxx</Text>
+                <Text as='h3' h='40'>Nome: {client.name}</Text>
+                <Text as='h3' h='40'>Endereço: {client.address}</Text>
+                <Text as='h3' h='40'>Celular: {client.cellphone}</Text>
+                <Text as='h3' h='40'>Observações: {client.observation}</Text>
             </Box>
             
             <Box>

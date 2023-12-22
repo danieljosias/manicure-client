@@ -19,7 +19,7 @@ import { toast } from 'react-toastify';
 import { ApiContext } from '../../providers/api'
 
 export const Clients = () => {
-  const { createsClients } = useContext(ApiContext)
+  const { createsClients, clients } = useContext(ApiContext)
 
   const [isOpen, setIsOpen] = useState(false)
   const [name, setName] = useState('')
@@ -115,7 +115,9 @@ export const Clients = () => {
           </Box>
           
           <Flex bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
-            <ClientsCard isOpen={isOpen}/>
+            {clients.map((client, i)=>{
+              return <ClientsCard key={i} isOpen={isOpen} client={client} />
+            })}
 
             <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
               <Heading as='h3'>Total: R$ xx,xx</Heading>

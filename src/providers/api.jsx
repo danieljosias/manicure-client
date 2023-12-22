@@ -4,6 +4,7 @@ export const ApiContext = createContext([])
 
 export const ApiProvider = ({children}) => {
     let token = localStorage?.getItem('token')
+    const [clients, setClients]  = useState([])
 
     async function login(data){
         try {
@@ -137,7 +138,9 @@ export const ApiProvider = ({children}) => {
             createFinances,
             listFinances,
             updateFinances,
-            deleteFinances, 
+            deleteFinances,
+            clients,
+            setClients, 
         }}
         >
             {children}
