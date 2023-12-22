@@ -1,5 +1,5 @@
 import { Header } from '../../components/Header'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import {
   FormControl,
   FormErrorMessage,
@@ -15,14 +15,18 @@ import {
 } from '@chakra-ui/react'
 import { IoMdPeople } from "react-icons/io";
 import { ClientsCard } from '../../components/ClientsCard'
+import { toast } from 'react-toastify';
+import { ApiContext } from '../../providers/api'
 
 export const Clients = () => {
+  const { createsClients } = useContext(ApiContext)
+
   const [isOpen, setIsOpen] = useState(false)
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [cellphone, setCellphone] = useState('')
   const [observation, setObservation] = useState('')
-
+  
   const handleNameChange = (e) => setName(e.target.value)
   const handleAddressChange = (e) => setAddress(e.target.value)
   const handleCellphoneChange = (e) => setCellphone(e.target.value)
@@ -31,6 +35,36 @@ export const Clients = () => {
   const isNameError = name === ''
   const isAddressError = address === ''
   const isCelphoneError = cellphone === ''
+
+  const user_id = '2558707c-c038-431b-a071-270109cd557b'
+
+  const data = {
+    name: name,
+    address: address,
+    cellphone: cellphone,
+    observation: observation,
+    user_id: user_id,
+  }
+ 
+  const handleCreatesClients = async () => {
+    const res = await createsClients(data)
+    
+    if(res.name === 'AxiosError'){
+      toast.error("Campo obrigatório!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+    }else{
+      toast.success("Cliente criado!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+      setName('')
+      setAddress('')
+      setCellphone('')
+      setObservation('')
+    }
+  }
 
   return(
     <>
@@ -61,9 +95,9 @@ export const Clients = () => {
             <FormLabel fontWeight='bold' h='25px'>Observações</FormLabel>
             <Input h='30px' type='text' value={observation} onChange={handleObservationChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite algo sobre o cliente'/>
             
-            {!isOpen ?  <Button h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
+            {!isOpen ?  <Button onClick={handleCreatesClients} h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
             :
-            <Button display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
+            <Button  display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
             }
           </FormControl>
         </Box>
@@ -79,7 +113,6 @@ export const Clients = () => {
               </Box>
             </HStack>
           </Box>
-          
           
           <Flex bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
             <ClientsCard isOpen={isOpen}/>
