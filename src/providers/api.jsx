@@ -14,7 +14,7 @@ export const ApiProvider = ({children}) => {
         }
     }
 
-    async function createClients(data){
+    async function createsClients(data){
         try {
             const res = await api.post('/clients/', data)
             return res
@@ -126,7 +126,7 @@ export const ApiProvider = ({children}) => {
     return(
         <ApiContext.Provider 
             value={{login,
-            createClients,
+            createsClients,
             listClients,
             updateCLients,
             deleteClients,
