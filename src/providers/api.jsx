@@ -24,18 +24,18 @@ export const ApiProvider = ({children}) => {
         }
     }
 
-    async function updateCLients(user_id, data){
+    async function updateClients(data, client_id){
         try {
-            const res = await api.patch(`/clients/${user_id}/`, data)
+            const res = await api.patch(`/clients/${client_id}/`, data)
             return res
         } catch (error) {
             return error
         }
     }
 
-    async function deleteClients(user_id){
+    async function deleteClients(client_id){
         try {
-            const res = await api.delete(`/comments/${user_id}/`)
+            const res = await api.delete(`/comments/${client_id}/`)
             return res
         } catch (error) {
             return error
@@ -51,18 +51,18 @@ export const ApiProvider = ({children}) => {
         }
     }
 
-    async function updateSchedules(user_id, data){
+    async function updateSchedules(client_id, data){
         try {
-            const res = await api.patch(`/schedules/${user_id}/`, data)
+            const res = await api.patch(`/schedules/${client_id}/`, data)
             return res
         } catch (error) {
             return error
         }
     }
 
-    async function deleteSchedules(user_id){
+    async function deleteSchedules(client_id){
         try {
-            const res = await api.delete(`/schedules/${user_id}/`)
+            const res = await api.delete(`/schedules/${client_id}/`)
             return res
         } catch (error) {
             return error
@@ -78,16 +78,16 @@ export const ApiProvider = ({children}) => {
         }
     }
 
-    async function updateFinances(user_id, data){
+    async function updateFinances(client_id, data){
         try {
-            const res = await api.patch(`/finances/${user_id}/`, data)
+            const res = await api.patch(`/finances/${client_id}/`, data)
             return res
         } catch (error) {
             return error
         }
     }
 
-    async function deleteFinances(user_id){
+    async function deleteFinances(client_id){
         try {
             const res = await api.delete(`/finances/${user_id}/`)
             return res
@@ -101,7 +101,7 @@ export const ApiProvider = ({children}) => {
         <ApiContext.Provider 
             value={{login,
             createsClients,
-            updateCLients,
+            updateClients,
             deleteClients,
             createSchedules,
             updateSchedules,

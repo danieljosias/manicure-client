@@ -28,8 +28,8 @@ export const ClientsCard = ({isOpen, name, client}) => {
                     
                     <Box>
                         <HStack h='0'>
-                            {!isOpen ? <ModalEditClient /> : ''}
-                            {!isOpen ? <ModalDeleteClient/> : ''}
+                            {!isOpen ? <ModalEditClient  client_id={client.id}/> : ''}
+                            {!isOpen ? <ModalDeleteClient client_id={client.id}/> : ''}
                         </HStack>
                     </Box>
 
