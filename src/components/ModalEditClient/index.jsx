@@ -37,7 +37,7 @@ export const ModalEditClient = () => {
   
   return (
     <>
-      <IconButton icon={<EditIcon/>} onClick={onOpen} color='blue' border='none' bg='transparent' h='0' fontSize='20px'>Open Modal</IconButton>
+      <IconButton icon={<EditIcon/>} onClick={onOpen} color='blue' border='none' bg='transparent' h='0' fontSize='20px'></IconButton>
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
