@@ -24,15 +24,6 @@ export const ApiProvider = ({children}) => {
         }
     }
 
-    async function listClients(){
-        try {
-            const res = await api.get('/clients/')
-            return res
-        } catch (error) {
-            return error
-        }
-    }
-
     async function updateCLients(user_id, data){
         try {
             const res = await api.patch(`/clients/${user_id}/`, data)
@@ -54,15 +45,6 @@ export const ApiProvider = ({children}) => {
     async function createSchedules(data){
         try {
             const res = await api.post('/schedules/', data)
-            return res
-        } catch (error) {
-            return error
-        }
-    }
-
-    async function listSchedules(){
-        try {
-            const res = await api.get('/schedules/')
             return res
         } catch (error) {
             return error
@@ -96,15 +78,6 @@ export const ApiProvider = ({children}) => {
         }
     }
 
-    async function listFinances(){
-        try {
-            const res = await api.get('/finances/')
-            return res
-        } catch (error) {
-            return error
-        }
-    }
-
     async function updateFinances(user_id, data){
         try {
             const res = await api.patch(`/finances/${user_id}/`, data)
@@ -128,15 +101,12 @@ export const ApiProvider = ({children}) => {
         <ApiContext.Provider 
             value={{login,
             createsClients,
-            listClients,
             updateCLients,
             deleteClients,
             createSchedules,
-            listSchedules,
             updateSchedules,
             deleteSchedules, 
             createFinances,
-            listFinances,
             updateFinances,
             deleteFinances,
             clients,

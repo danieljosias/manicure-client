@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export const Signin = () =>{
-  const { login, listClients, setClients } = useContext(ApiContext)
+  const { login } = useContext(ApiContext)
   
   const navigate = useNavigate()
   
@@ -45,8 +45,6 @@ export const Signin = () =>{
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
-      const response = await listClients()
-      setClients([response])
       navigate('/clients/')
 
     }

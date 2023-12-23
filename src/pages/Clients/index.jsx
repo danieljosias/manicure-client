@@ -66,6 +66,7 @@ export const Clients = () => {
     }
   }
 
+  
   return(
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen}/>
@@ -114,13 +115,11 @@ export const Clients = () => {
             </HStack>
           </Box>
           
-          <Flex bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
-            {clients.map((client, i)=>{
-              return <ClientsCard key={i} isOpen={isOpen} client={client} />
-            })}
+          <Flex overflowY='scroll' bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
+            <ClientsCard isOpen={isOpen} />
 
             <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
-              <Heading as='h3'>Total: R$ xx,xx</Heading>
+              <Heading as='h3'>Total: XX</Heading>
             </Box>
           </Flex>    
         </Flex>
