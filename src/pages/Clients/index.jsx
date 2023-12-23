@@ -66,7 +66,6 @@ export const Clients = () => {
     }
   }
 
-  
   return(
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen}/>

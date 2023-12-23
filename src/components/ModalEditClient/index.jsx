@@ -16,10 +16,16 @@ import {
   Heading,
   Flex,
 } from '@chakra-ui/react'
-import { useRef, useState } from 'react'
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 
-export const ModalEditClient = () => {
+import { useContext, useEffect, useRef, useState } from 'react'
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
+import { api } from '../../services/services'
+import { ApiContext } from '../../providers/api'
+import { toast } from 'react-toastify'
+
+export const ModalEditClient = ({client_id}) => {
+  const { clients, setClients, updateClients } = useContext(ApiContext)
+
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = useRef(null)
@@ -34,7 +40,36 @@ export const ModalEditClient = () => {
   const handleAddressChange = (e) => setAddress(e.target.value)
   const handleCellphoneChange = (e) => setCellphone(e.target.value)
   const handleObservationChange = (e) => setObservation(e.target.value)
+
+  const user_id = '2558707c-c038-431b-a071-270109cd557b'
   
+  const data = {
+    name: name,
+    address: address,
+    cellphone: cellphone,
+    observation: observation,
+    user_id: user_id,
+  }
+  
+  const UpdateClients = async () => {
+    const res = await updateClients(data, client_id)
+    
+    if(res.name !== 'AxiosError'){
+      toast.success("Cliente atualizado!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+      onClose()
+    }else{
+      toast.error("Campo em branco!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+    }
+  }
+
+ 
+
   return (
     <>
       <IconButton icon={<EditIcon/>} onClick={onOpen} color='blue' border='none' bg='transparent' h='0' fontSize='20px'></IconButton>
@@ -66,7 +101,7 @@ export const ModalEditClient = () => {
           </FormControl>
         
           <ModalFooter p='10'>
-            <Button h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>
+            <Button onClick={UpdateClients} h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>
               Editar
             </Button>
           </ModalFooter>
