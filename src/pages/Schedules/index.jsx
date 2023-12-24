@@ -69,6 +69,7 @@ export const Schedules = () => {
       setHour('') 
       setService('')
       setPrice('')
+      location.reload()
     }else{
       toast.error("Campo vazio!", {
         position: toast.POSITION.BOTTOM_CENTER,

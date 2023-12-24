@@ -57,7 +57,8 @@ export const Clients = () => {
       setName('')
       setAddress('')
       setCellphone('')
-      setObservation('') 
+      setObservation('')
+      location.reload() 
     }else{
       toast.error("Campo vazio!", {
         position: toast.POSITION.BOTTOM_CENTER,
