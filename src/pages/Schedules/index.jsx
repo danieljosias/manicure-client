@@ -1,5 +1,5 @@
 import { Header } from '../../components/Header'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import {
   FormControl,
   FormErrorMessage,
@@ -15,8 +15,12 @@ import {
 } from '@chakra-ui/react'
 import { MdContacts } from "react-icons/md";
 import { SchedulesCard } from '../../components/ScheudulesCard';
+import { ApiContext } from '../../providers/api';
+import { toast } from 'react-toastify';
 
 export const Schedules = () => {
+  const { createSchedules, schedules } = useContext(ApiContext)
+
   const [isOpen, setIsOpen] = useState(false)
   const [name, setName] = useState('')
   const [cellphone, setCellphone] = useState('')
@@ -38,6 +42,40 @@ export const Schedules = () => {
   const isHourError = hour === ''
   const isServiceError = service === ''
   const isPriceError = price === ''
+
+  const user_id = '2558707c-c038-431b-a071-270109cd557b'
+
+  const data = {
+    name: name,
+    cellphone: cellphone,
+    date: date,
+    hour: hour,
+    service: service,
+    price: price,
+    user_id: user_id,
+  }
+
+  const handleCreatesSchedules = async () => {
+    const res = await createSchedules(data)
+
+    if(res.name !== 'AxiosError'){
+      toast.success("Agendamamento criado!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+      setName('')
+      setCellphone('')
+      setDate('')
+      setHour('') 
+      setService('')
+      setPrice('')
+    }else{
+      toast.error("Campo vazio!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+    } 
+  }
 
   return(
     <>
@@ -74,7 +112,7 @@ export const Schedules = () => {
             {price === '' ? <FormErrorMessage fontWeight='bold' h='30px'>Preço é obrigatório.</FormErrorMessage> : <FormErrorMessage fontWeight='bold' h='30px'>Preço</FormErrorMessage>}
             <Input h='30px' type='text' value={price} onChange={handlePriceChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite o preço do serviço'/>
             
-            {!isOpen ?  <Button h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
+            {!isOpen ?  <Button onClick={handleCreatesSchedules} h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
             :
             <Button display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
             }
