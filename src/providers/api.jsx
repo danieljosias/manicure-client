@@ -61,7 +61,7 @@ export const ApiProvider = ({children}) => {
         }
     }
 
-    async function updateSchedules(client_id, data){
+    async function updateSchedules(data,client_id){
         try {
             const res = await api.patch(`/schedules/${client_id}/`, data)
             return res
