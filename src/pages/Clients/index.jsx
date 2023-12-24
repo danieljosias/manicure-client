@@ -118,7 +118,7 @@ export const Clients = () => {
             <ClientsCard isOpen={isOpen} />
 
             <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
-              <Heading as='h3'>Total: XX</Heading>
+              <Heading as='h3'>Total: {clients.length}</Heading>
             </Box>
           </Flex>    
         </Flex>
