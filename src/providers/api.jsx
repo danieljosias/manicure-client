@@ -35,7 +35,7 @@ export const ApiProvider = ({children}) => {
 
     async function deleteClients(client_id){
         try {
-            const res = await api.delete(`/comments/${client_id}/`)
+            const res = await api.delete(`/clients/${client_id}/`)
             return res
         } catch (error) {
             return error

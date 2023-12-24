@@ -13,9 +13,9 @@ import {
   VStack,
   Flex,
 } from '@chakra-ui/react'
-import { IoMdPeople } from "react-icons/io";
+import { IoMdPeople } from "react-icons/io"
 import { ClientsCard } from '../../components/ClientsCard'
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 import { ApiContext } from '../../providers/api'
 
 export const Clients = () => {
@@ -48,9 +48,10 @@ export const Clients = () => {
  
   const handleCreatesClients = async () => {
     const res = await createsClients(data)
-    
-    if(res.name === 'AxiosError'){
-      toast.error("Campo obrigatório!", {
+   console.log(res)
+   
+    if(res.name === "AxiosError"){
+      toast.error("Campo vazio!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
@@ -64,6 +65,7 @@ export const Clients = () => {
       setCellphone('')
       setObservation('')
     }
+      
   }
 
   return(

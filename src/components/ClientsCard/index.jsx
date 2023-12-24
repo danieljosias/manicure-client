@@ -32,7 +32,6 @@ export const ClientsCard = ({isOpen, name, client}) => {
                             {!isOpen ? <ModalDeleteClient client_id={client.id}/> : ''}
                         </HStack>
                     </Box>
-
                 </Flex>
             })}
         </>
