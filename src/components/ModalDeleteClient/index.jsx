@@ -38,6 +38,7 @@ export const ModalDeleteClient = ({client_id}) => {
         theme: 'dark',
       })
       onClose()
+      location.reload()
     }
   }
   

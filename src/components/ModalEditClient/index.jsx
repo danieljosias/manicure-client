@@ -53,13 +53,14 @@ export const ModalEditClient = ({client_id}) => {
   
   const UpdateClients = async () => {
     const res = await updateClients(data, client_id)
-    
+
     if(res.name !== 'AxiosError'){
       toast.success("Cliente atualizado!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
       onClose()
+      location.reload()
     }else{
       toast.error("Campo em branco!", {
         position: toast.POSITION.BOTTOM_CENTER,
@@ -68,7 +69,7 @@ export const ModalEditClient = ({client_id}) => {
     }
   }
 
- 
+
 
   return (
     <>

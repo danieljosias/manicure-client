@@ -6,14 +6,14 @@ import { useContext, useEffect } from 'react';
 import { ApiContext } from '../../providers/api';
 
 export const ClientsCard = ({isOpen, name, client}) => {
-    const { clients, setClients } = useContext(ApiContext)
+    const { clients, setClients, listClients } = useContext(ApiContext)
 
     useEffect(()=>{
         fetch("http://127.0.0.1:8000/api/clients/")
         .then((response) => response.json())
         .then((response) => setClients(response))
         .catch((err) => console.log(err))
-    },[clients])
+    },[])
 
     return(
         <>

@@ -48,14 +48,8 @@ export const Clients = () => {
  
   const handleCreatesClients = async () => {
     const res = await createsClients(data)
-   console.log(res)
-   
-    if(res.name === "AxiosError"){
-      toast.error("Campo vazio!", {
-        position: toast.POSITION.BOTTOM_CENTER,
-        theme: 'dark',
-      })
-    }else{
+
+    if(res.name !== 'AxiosError'){
       toast.success("Cliente criado!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
@@ -63,9 +57,13 @@ export const Clients = () => {
       setName('')
       setAddress('')
       setCellphone('')
-      setObservation('')
-    }
-      
+      setObservation('') 
+    }else{
+      toast.error("Campo vazio!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+    } 
   }
 
   return(
