@@ -24,6 +24,15 @@ export const ApiProvider = ({children}) => {
         }
     }
 
+    async function listClients(){
+        try {
+            const res = await api.get('/clients/')
+            return res
+        } catch (error) {
+            return error
+        }
+    }
+
     async function updateClients(data, client_id){
         try {
             const res = await api.patch(`/clients/${client_id}/`, data)
@@ -35,7 +44,7 @@ export const ApiProvider = ({children}) => {
 
     async function deleteClients(client_id){
         try {
-            const res = await api.delete(`/comments/${client_id}/`)
+            const res = await api.delete(`/clients/${client_id}/`)
             return res
         } catch (error) {
             return error
@@ -100,6 +109,7 @@ export const ApiProvider = ({children}) => {
     return(
         <ApiContext.Provider 
             value={{login,
+            listClients,
             createsClients,
             updateClients,
             deleteClients,
