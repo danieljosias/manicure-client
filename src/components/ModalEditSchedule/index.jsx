@@ -16,10 +16,14 @@ import {
   Heading,
   Flex,
 } from '@chakra-ui/react'
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
+import { ApiContext } from '../../providers/api'
+import { toast } from 'react-toastify'
 
-export const ModalEditSchedule= () => {
+export const ModalEditSchedule = ({schedule_id}) => {
+  const { updateSchedules } = useContext(ApiContext)
+
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = useRef(null)
@@ -38,6 +42,36 @@ export const ModalEditSchedule= () => {
   const handleHourChange = (e) => setHour(e.target.value)
   const handleServiceChange = (e) => setService(e.target.value)
   const handlePriceChange = (e) => setPrice(e.target.value)
+
+  const user_id = '2558707c-c038-431b-a071-270109cd557b'
+  
+  const data = {
+    name: name,
+    cellphone: cellphone,
+    date: date,
+    hour: hour,
+    service: service,
+    price: price,
+    user_id: user_id,
+  }
+
+  const UpdatesSchedules = async () => {
+    const res = await updateSchedules(data, schedule_id)
+
+    if(res.name !== 'AxiosError'){
+      toast.success("Cliente atualizado!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+      onClose()
+      location.reload()
+    }else{
+      toast.error("Campo em branco!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+    }
+  }
   
   return (
     <>
@@ -76,7 +110,7 @@ export const ModalEditSchedule= () => {
           </FormControl>
 
           <ModalFooter p='10'>
-            <Button h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>
+            <Button onClick={UpdatesSchedules} h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>
               Editar
             </Button>
           </ModalFooter>

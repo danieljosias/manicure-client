@@ -30,8 +30,8 @@ export const SchedulesCard = ({isOpen}) => {
                 
                 <Box>
                     <HStack h='0'>
-                        {!isOpen ? <ModalEditSchedule/> : ''}
-                        {!isOpen ? <ModalDeleteSchedule/> : ''}
+                        {!isOpen ? <ModalEditSchedule schedule_id={schedule.id}/> : ''}
+                        {!isOpen ? <ModalDeleteSchedule schedule_id={schedule.id}/> : ''}
                     </HStack>
                 </Box>
             </Flex>
