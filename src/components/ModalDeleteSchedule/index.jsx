@@ -22,7 +22,7 @@ import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
 export const ModalDeleteSchedule = ({schedule_id}) => {
-  const { deleteSchedules } = useContext(ApiContext)
+  const { deleteSchedules, listSchedules, setSchedules } = useContext(ApiContext)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = useRef(null)
@@ -36,8 +36,10 @@ export const ModalDeleteSchedule = ({schedule_id}) => {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
+      const response = await listSchedules()
+      setSchedules(response.data)
+      
       onClose()
-      location.reload()
     }
   }
   

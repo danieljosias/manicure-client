@@ -1,5 +1,5 @@
 import { Header } from '../../components/Header'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {
   FormControl,
   FormErrorMessage,
@@ -19,7 +19,7 @@ import { toast } from 'react-toastify'
 import { ApiContext } from '../../providers/api'
 
 export const Clients = () => {
-  const { createsClients, clients } = useContext(ApiContext)
+  const { createsClients, clients, setClients, listClients } = useContext(ApiContext)
 
   const [isOpen, setIsOpen] = useState(false)
   const [name, setName] = useState('')
@@ -48,17 +48,21 @@ export const Clients = () => {
  
   const handleCreatesClients = async () => {
     const res = await createsClients(data)
-
+    
     if(res.name !== 'AxiosError'){
       toast.success("Cliente criado!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
+      
+      const response = await listClients()
+      setClients(response.data)
+
       setName('')
       setAddress('')
       setCellphone('')
       setObservation('')
-      location.reload() 
+
     }else{
       toast.error("Campo vazio!", {
         position: toast.POSITION.BOTTOM_CENTER,
@@ -66,7 +70,6 @@ export const Clients = () => {
       })
     } 
   }
-
   return(
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen}/>

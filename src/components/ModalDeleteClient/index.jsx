@@ -16,13 +16,13 @@ import {
   Heading,
   Flex,
 } from '@chakra-ui/react'
-import { useContext, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
 export const ModalDeleteClient = ({client_id}) => {
-  const { deleteClients } = useContext(ApiContext)
+  const { deleteClients, setClients, listClients } = useContext(ApiContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -37,8 +37,10 @@ export const ModalDeleteClient = ({client_id}) => {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
+      const response = await listClients()
+      setClients(response.data)
+
       onClose()
-      location.reload()
     }
   }
   

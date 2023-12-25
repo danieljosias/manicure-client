@@ -19,7 +19,7 @@ import { ApiContext } from '../../providers/api';
 import { toast } from 'react-toastify';
 
 export const Schedules = () => {
-  const { createSchedules, schedules } = useContext(ApiContext)
+  const { createSchedules, schedules, listSchedules, setSchedules } = useContext(ApiContext)
 
   const [isOpen, setIsOpen] = useState(false)
   const [name, setName] = useState('')
@@ -63,13 +63,17 @@ export const Schedules = () => {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
+
+      const response = await listSchedules()
+      setSchedules(response.data)
+
       setName('')
       setCellphone('')
       setDate('')
       setHour('') 
       setService('')
       setPrice('')
-      location.reload()
+      
     }else{
       toast.error("Campo vazio!", {
         position: toast.POSITION.BOTTOM_CENTER,

@@ -52,6 +52,15 @@ export const ApiProvider = ({children}) => {
         }
     }
 
+    async function listSchedules(){
+        try {
+            const res = await api.get('/schedules/')
+            return res
+        } catch (error) {
+            return error
+        }
+    }
+
     async function createSchedules(data){
         try {
             const res = await api.post('/schedules/', data)
@@ -114,6 +123,7 @@ export const ApiProvider = ({children}) => {
             createsClients,
             updateClients,
             deleteClients,
+            listSchedules,
             createSchedules,
             updateSchedules,
             deleteSchedules, 

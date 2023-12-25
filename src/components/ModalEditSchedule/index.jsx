@@ -22,7 +22,7 @@ import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
 export const ModalEditSchedule = ({schedule_id}) => {
-  const { updateSchedules } = useContext(ApiContext)
+  const { updateSchedules, listSchedules, setSchedules } = useContext(ApiContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -63,8 +63,10 @@ export const ModalEditSchedule = ({schedule_id}) => {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
+      const response = await listSchedules()
+      setSchedules(response.data)
+      
       onClose()
-      location.reload()
     }else{
       toast.error("Campo em branco!", {
         position: toast.POSITION.BOTTOM_CENTER,
