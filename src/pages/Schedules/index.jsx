@@ -82,6 +82,10 @@ export const Schedules = () => {
     } 
   }
 
+  const sun = schedules.reduce((acc, schedule) => {
+    return Number(acc) + Number(schedule.price)
+  }, 0)
+
   return(
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen}/>
@@ -136,11 +140,12 @@ export const Schedules = () => {
             </HStack>
           </Box>
 
+            
           <Flex bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
             <SchedulesCard isOpen={isOpen}/>
 
             <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
-              <Heading as='h3'>Total: R$ xx,xx</Heading>
+              <Heading as='h3'>Total: R$ {sun}</Heading>
             </Box>
           </Flex>    
         </Flex>
