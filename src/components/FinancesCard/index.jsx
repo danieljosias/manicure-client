@@ -2,14 +2,27 @@ import { Card, Text, IconButton, FormControl, Input, Box, Flex, FormLabel, VStac
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { ModalEditFinance } from '../ModalEditFinance'
 import { ModalDeleteFinances } from '../ModalDeleteFinaces'
+import { useContext, useEffect } from 'react'
+import { ApiContext } from '../../providers/api'
 
 export const FiancesCard = ({isOpen}) => {
+    const { finances, setFinances } = useContext(ApiContext)
+
+    useEffect(()=>{
+        fetch("http://127.0.0.1:8000/api/finances/")
+        .then((response) => response.json())
+        .then((response) => setFinances(response))
+        .catch((err) => console.log(err))
+    },[])
+
     return(
-        <Flex bg='white' justifyContent='space-between' p='25' borderRadius='0px 10px 0px 10px' h='200px'>
+        <>
+        {finances.map((finance,i)=>{
+            return <Flex key={i} bg='white' justifyContent='space-between' p='25' borderRadius='0px 10px 0px 10px'>
             <Box>
-                <Text as='h3' h='40'>Descrição: xxxxxxxxxxxxxxxxxxxxx</Text>
-                <Text as='h3' h='40'>Tipo: xxxxxxxxxxxxxxxxxxxxx</Text>
-                <Text as='h3' h='40'>Valor: xxxxxxxxxxxxxxxxxxxxx</Text>
+                <Heading as='h3'><Text>Descrição: {finance.description}</Text></Heading>
+                <Heading as='h3'><Text>Tipo: {finance.type}</Text></Heading>
+                <Heading as='h3'><Text>Valor: {finance.value}</Text></Heading>
             </Box>
             
             <Box>
@@ -19,5 +32,8 @@ export const FiancesCard = ({isOpen}) => {
                 </HStack>
             </Box>
         </Flex>
+        })}
+        
+        </>
     )   
 }
