@@ -24,7 +24,7 @@ import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
 export const ModalEditClient = ({client_id}) => {
-  const { clients, setClients, updateClients } = useContext(ApiContext)
+  const { clients, setClients, updateClients, listClients } = useContext(ApiContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -51,16 +51,26 @@ export const ModalEditClient = ({client_id}) => {
     user_id: user_id,
   }
   
+  for (const key in data){
+    `${key}: ${data[key]}`
+    if(!data[key]){
+      delete data[key]
+    }
+  }
+
   const UpdateClients = async () => {
     const res = await updateClients(data, client_id)
-
+    
     if(res.name !== 'AxiosError'){
       toast.success("Cliente atualizado!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
+
+      const response = await listClients()
+      setClients(response.data)
+
       onClose()
-      location.reload()
     }else{
       toast.error("Campo em branco!", {
         position: toast.POSITION.BOTTOM_CENTER,
@@ -68,9 +78,7 @@ export const ModalEditClient = ({client_id}) => {
       })
     }
   }
-
-
-
+  
   return (
     <>
       <IconButton icon={<EditIcon/>} onClick={onOpen} color='blue' border='none' bg='transparent' h='0' fontSize='20px'></IconButton>
