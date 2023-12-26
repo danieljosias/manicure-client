@@ -1,5 +1,5 @@
 import { Header } from '../../components/Header'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {
   FormControl,
   FormErrorMessage,
@@ -19,7 +19,7 @@ import { ApiContext } from '../../providers/api';
 import { toast } from 'react-toastify';
 
 export const Finances = () => {
-  const { createFinances, listFinances, setFinances } = useContext(ApiContext)
+  const { createFinances, listFinances, setFinances, finances } = useContext(ApiContext)
 
   const [isOpen, setIsOpen] = useState(false)
   const [description, setDescription] = useState('')
@@ -65,7 +65,19 @@ export const Finances = () => {
       })
     } 
   }
+  
+  const datas = finances.filter((finance) => finance.type === 'Entrada')
+  const saida = datas.reduce((acc, data) => {
+    return Number(acc) + Number(data.value)
+  }, 0)
 
+  const itens = finances.filter((finance) => finance.type === 'Saída')
+  const entrada = itens.reduce((acc, itens) => {
+    return Number(acc) + Number(itens.value)
+  }, 0)
+
+  const total = Number(entrada) - Number(saida)
+  
   return(
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen}/>
@@ -116,13 +128,13 @@ export const Finances = () => {
 
             <Flex flexDirection='column' justifyContent='space-between' gap='10'>
                 <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
-                  <Heading as='h3'>Entrada: R$ xx,xx</Heading>
+                  <Heading as='h3'>Entrada: R$ {entrada}</Heading>
                 </Box>
                 <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
-                  <Heading as='h3'>Saída: R$ xx,xx</Heading>
+                  <Heading as='h3'>Saída: R$ {saida}</Heading>
                 </Box>
                 <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
-                  <Heading as='h3'>Total: R$ xx,xx</Heading>
+                  <Heading as='h3'>Total: R$ {Math.abs(total)}</Heading>
                 </Box>
             </Flex>
           </Flex>    
