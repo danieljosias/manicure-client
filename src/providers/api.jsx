@@ -108,16 +108,16 @@ export const ApiProvider = ({children}) => {
         }
     }
 
-    async function updateFinances(client_id, data){
+    async function updateFinances(data, finance_id){
         try {
-            const res = await api.patch(`/finances/${client_id}/`, data)
+            const res = await api.patch(`/finances/${finance_id}/`, data)
             return res
         } catch (error) {
             return error
         }
     }
 
-    async function deleteFinances(client_id){
+    async function deleteFinances(finance_id){
         try {
             const res = await api.delete(`/finances/${user_id}/`)
             return res
