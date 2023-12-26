@@ -55,6 +55,13 @@ export const ModalEditSchedule = ({schedule_id}) => {
     user_id: user_id,
   }
 
+  for (const key in data){
+    `${key}: ${data[key]}`
+    if(!data[key]){
+      delete data[key]
+    }
+  }
+
   const UpdatesSchedules = async () => {
     const res = await updateSchedules(data, schedule_id)
 
