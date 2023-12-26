@@ -1,5 +1,5 @@
 import { Header } from '../../components/Header'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import {
   FormControl,
   FormErrorMessage,
@@ -15,8 +15,12 @@ import {
 } from '@chakra-ui/react'
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import { FiancesCard } from '../../components/FinancesCard';
+import { ApiContext } from '../../providers/api';
+import { toast } from 'react-toastify';
 
 export const Finances = () => {
+  const { createFinances, listFinances, setFinances } = useContext(ApiContext)
+
   const [isOpen, setIsOpen] = useState(false)
   const [description, setDescription] = useState('')
   const [type, setType] = useState('')
@@ -29,6 +33,38 @@ export const Finances = () => {
   const isDescriptionError = description === ''
   const isTypeError = type === ''
   const isValueError = value === ''
+
+  const user_id = '2558707c-c038-431b-a071-270109cd557b'
+
+  const data = {
+    description: description.substring(0,1).toUpperCase().concat(description.substring(1)),
+    type: type.substring(0,1).toUpperCase().concat(type.substring(1)),
+    value: value.substring(0,1).toUpperCase().concat(value.substring(1)),
+    user_id: user_id,
+  }
+
+  const handleCreatesFinances = async () => {
+    const res = await createFinances(data)
+    if(res.name !== 'AxiosError'){
+      toast.success("Financiamento criado!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+
+      const response = await listFinances()
+      setFinances(response.data)
+
+      setDescription('')
+      setType('')
+      setValue('')
+      
+    }else{
+      toast.error("Campo vazio!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+    } 
+  }
 
   return(
     <>
@@ -56,7 +92,7 @@ export const Finances = () => {
             {value === '' ? <FormErrorMessage fontWeight='bold' h='30px'>Valor é obrigatória.</FormErrorMessage> : <FormErrorMessage fontWeight='bold' h='30px'>Valor</FormErrorMessage>}
             <Input h='30px' type='text' value={value} onChange={handleValueChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite o valor'/>
             
-            {!isOpen ?  <Button h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Ok</Button>
+            {!isOpen ?  <Button onClick={handleCreatesFinances} h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Ok</Button>
             :
             <Button display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Ok</Button>
             }
