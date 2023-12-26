@@ -16,10 +16,14 @@ import {
   Heading,
   Flex,
 } from '@chakra-ui/react'
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
+import { ApiContext } from '../../providers/api'
+import { toast } from 'react-toastify'
 
-export const ModalEditFinance = () => {
+export const ModalEditFinance = ({finance_id}) => {
+  const { updateFinances, listFinances, setFinances }  = useContext(ApiContext)
+
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = useRef(null)
@@ -32,6 +36,43 @@ export const ModalEditFinance = () => {
   const handleDescriptionChange = (e) => setDescription(e.target.value)
   const handleTypeChange = (e) => setType(e.target.value)
   const handleValueChange = (e) => setValue(e.target.value)
+
+  const user_id = '2558707c-c038-431b-a071-270109cd557b'
+  
+  const data = {
+    description: description,
+    type: type,
+    value: value,
+    user_id: user_id,
+  }
+  
+  for (const key in data){
+    `${key}: ${data[key]}`
+    if(!data[key]){
+      delete data[key]
+    }
+  }
+
+  const handleUpdatesFinances = async () => {
+    const res = await updateFinances(data, finance_id)
+
+    if(res.name !== 'AxiosError'){
+      toast.success("Finança atualizada!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+
+      const response = await listFinances()
+      setFinances(response.data)
+
+      onClose()
+    }else{
+      toast.error("Campo em branco!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+    }
+  }
 
   return (
     <>
@@ -61,7 +102,7 @@ export const ModalEditFinance = () => {
           </FormControl>
         
           <ModalFooter p='10'>
-            <Button h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>
+            <Button onClick={handleUpdatesFinances} h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>
               Editar
             </Button>
           </ModalFooter>

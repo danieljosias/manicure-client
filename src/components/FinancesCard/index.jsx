@@ -27,8 +27,8 @@ export const FiancesCard = ({isOpen}) => {
             
             <Box>
                 <HStack h='0'>
-                    {!isOpen ? <ModalEditFinance/> : ''}
-                    {!isOpen ? <ModalDeleteFinances/> : ''}
+                    {!isOpen ? <ModalEditFinance finance_id={finance.id}/> : ''}
+                    {!isOpen ? <ModalDeleteFinances finance_id={finance.id}/> : ''}
                 </HStack>
             </Box>
         </Flex>
