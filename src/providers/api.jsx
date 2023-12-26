@@ -119,7 +119,7 @@ export const ApiProvider = ({children}) => {
 
     async function deleteFinances(finance_id){
         try {
-            const res = await api.delete(`/finances/${user_id}/`)
+            const res = await api.delete(`/finances/${finance_id}/`)
             return res
         } catch (error) {
             return error

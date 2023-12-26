@@ -16,14 +16,34 @@ import {
   Heading,
   Flex,
 } from '@chakra-ui/react'
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
+import { ApiContext } from '../../providers/api'
+import { toast } from 'react-toastify'
 
-export const ModalDeleteFinances = () => {
+export const ModalDeleteFinances = ({finance_id}) => {
+  const { deleteFinances, setFinances, listFinances } = useContext(ApiContext)
+
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = useRef(null)
   const finalRef = useRef(null)
+
+  const DeleteFinances = async () => {
+      const res = await deleteFinances(finance_id)
+      console.log(res)
+      
+      if(res.status === 204){
+        toast.success("Finança deletada!", {
+          position: toast.POSITION.BOTTOM_CENTER,
+          theme: 'dark',
+        })
+        const response = await listFinances()
+        setFinances(response.data)
+  
+        onClose()
+      }
+    }
   
   return (
     <>
@@ -41,7 +61,7 @@ export const ModalDeleteFinances = () => {
           </Flex>
         
           <Flex p='10' gap='10'>
-            <Button h='40px' type='submit' bg='black' color='white' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'white', 'color':'black'}} transition='ease 1s'>
+            <Button onClick={DeleteFinances } h='40px' type='submit' bg='black' color='white' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'white', 'color':'black'}} transition='ease 1s'>
               Sim
             </Button>
             <Button onClick={onClose} h='40px' type='submit' bg='black' color='white' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'white', 'color':'black'}} transition='ease 1s'>
