@@ -6,6 +6,7 @@ export const ApiProvider = ({children}) => {
     let token = localStorage?.getItem('token')
     const [clients, setClients]  = useState([])
     const [schedules, setSchedules]  = useState([])
+    const [finances, setFinances]  = useState([])
 
     async function login(data){
         try {
@@ -88,6 +89,16 @@ export const ApiProvider = ({children}) => {
         }
     }
 
+    async function listFinances(){
+        try {
+            const res = await api.get('/finances/')
+            return res
+        } catch (error) {
+            return error
+        }
+    }
+
+
     async function createFinances(data){
         try {
             const res = await api.post('/finances/', data)
@@ -126,7 +137,8 @@ export const ApiProvider = ({children}) => {
             listSchedules,
             createSchedules,
             updateSchedules,
-            deleteSchedules, 
+            deleteSchedules,
+            listFinances, 
             createFinances,
             updateFinances,
             deleteFinances,
@@ -134,6 +146,8 @@ export const ApiProvider = ({children}) => {
             setClients, 
             schedules,
             setSchedules,
+            finances,
+            setFinances,
         }}
         >
             {children}
