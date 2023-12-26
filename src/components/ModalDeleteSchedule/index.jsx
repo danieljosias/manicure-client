@@ -53,12 +53,12 @@ export const ModalDeleteSchedule = ({schedule_id}) => {
         onClose={onClose}
       >
         <ModalOverlay bg='#F3CBCB' />
-        <ModalContent p='20px'>
+        <ModalContent display='flex' justifyContent='center' alignItems='center' h='100vh'>
           <Flex justifyContent='center' textAlign='center' p='10'> 
             <Heading as='h2' fontWeight='bold'>Tem certeza?</Heading>
           </Flex>
         
-          <Flex p='10' gap='10'>
+          <Flex p='10' gap='10' w='100%'>
             <Button onClick={DeleteClients} h='40px' type='submit' bg='black' color='white' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'white', 'color':'black'}} transition='ease 1s'>
               Sim
             </Button>
