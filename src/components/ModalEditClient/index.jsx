@@ -89,7 +89,7 @@ export const ModalEditClient = ({client_id}) => {
         onClose={onClose}
       >
         <ModalOverlay bg='#F3CBCB' />
-        <ModalContent p='20px'>
+        <ModalContent p='20px' >
           <Flex justifyContent='space-between'p='10'> 
             <Heading as='h3'>Editar Cliente</Heading>
             <ModalCloseButton border='none' bg='transparent' />
