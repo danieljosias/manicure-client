@@ -31,7 +31,6 @@ export const ModalDeleteFinances = ({finance_id}) => {
 
   const DeleteFinances = async () => {
       const res = await deleteFinances(finance_id)
-      console.log(res)
       
       if(res.status === 204){
         toast.success("Finança deletada!", {
