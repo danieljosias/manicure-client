@@ -39,10 +39,10 @@ export const Clients = () => {
   const user_id = '2558707c-c038-431b-a071-270109cd557b'
 
   const data = {
-    name: name,
-    address: address,
-    cellphone: cellphone,
-    observation: observation,
+    name: name.substring(0,1).toUpperCase().concat(name.substring(1)),
+    address: address.substring(0,1).toUpperCase().concat(address.substring(1)),
+    cellphone: cellphone.substring(0,1).toUpperCase().concat(cellphone.substring(1)),
+    observation: observation.substring(0,1).toUpperCase().concat(observation.substring(1)),
     user_id: user_id,
   }
  

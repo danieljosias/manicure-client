@@ -46,12 +46,12 @@ export const Schedules = () => {
   const user_id = '2558707c-c038-431b-a071-270109cd557b'
 
   const data = {
-    name: name,
-    cellphone: cellphone,
-    date: date,
-    hour: hour,
-    service: service,
-    price: price,
+    name: name.substring(0,1).toUpperCase().concat(name.substring(1)),
+    cellphone: cellphone.substring(0,1).toUpperCase().concat(cellphone.substring(1)),
+    date: date.substring(0,1).toUpperCase().concat(date.substring(1)),
+    hour: hour.substring(0,1).toUpperCase().concat(hour.substring(1)),
+    service: service.substring(0,1).toUpperCase().concat(service.substring(1)),
+    price: price.substring(0,1).toUpperCase().concat(price.substring(1)),
     user_id: user_id,
   }
 

@@ -40,12 +40,12 @@ export const ModalEditFinance = ({finance_id}) => {
   const user_id = '2558707c-c038-431b-a071-270109cd557b'
   
   const data = {
-    description: description,
-    type: type,
-    value: value,
+    description: description.substring(0,1).toUpperCase().concat(description.substring(1)),
+    type: type.substring(0,1).toUpperCase().concat(type.substring(1)),
+    value: value.substring(0,1).toUpperCase().concat(value.substring(1)),
     user_id: user_id,
   }
-  
+
   for (const key in data){
     `${key}: ${data[key]}`
     if(!data[key]){
