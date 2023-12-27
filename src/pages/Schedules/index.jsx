@@ -102,7 +102,7 @@ export const Schedules = () => {
         </Box>
 
         <Box>
-          <FormControl isInvalid={{isNameError, isCelphoneError, isDateError, isHourError, isServiceError, isPriceError}} display='flex' gap='10px' flexDirection='column' justifyContent='center' bg='#F3CBCB' borderRadius='0px 10px 0px 10px' p='25' h='450px'>
+          <FormControl isInvalid={{isNameError, isCelphoneError, isDateError, isHourError, isServiceError, isPriceError}} display='flex' gap='10px' flexDirection='column' justifyContent='center' bg='#F3CBCB' borderRadius='0px 10px 0px 10px' p='25' h='600px'>
             {name === '' ? <FormErrorMessage fontWeight='bold' h='30px'>Nome é obrigatório.</FormErrorMessage> : <FormErrorMessage fontWeight='bold' h='30px'>Nome</FormErrorMessage>}
             <Input h='30px' type='text' value={name} onChange={handleNameChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite o nome do cliente'/>
             
