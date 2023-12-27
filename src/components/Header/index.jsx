@@ -1,12 +1,16 @@
-import { Flex, Box, Image, IconButton} from "@chakra-ui/react"
+import { Flex, Box, Image, IconButton, useConst} from "@chakra-ui/react"
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
 import { IoMdLogOut } from 'react-icons/io'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import { ApiContext } from "../../providers/api";
 
 export const Header = ({isOpen, setIsOpen}) => {
+    const { setIsAuthenticated } = useContext(ApiContext)
+
     const navigate = useNavigate();
 
     const handleOpenMenu = () => {
@@ -18,7 +22,8 @@ export const Header = ({isOpen, setIsOpen}) => {
     }
 
     const handleLogout= () => {
-        navigate('/signin');
+        navigate('/signin')
+        localStorage.removeItem('token')
     }
     
     return(

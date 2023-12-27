@@ -3,10 +3,10 @@ import { api } from '../services/services.js'
 export const ApiContext = createContext([])
 
 export const ApiProvider = ({children}) => {
-    let token = localStorage?.getItem('token')
     const [clients, setClients]  = useState([])
     const [schedules, setSchedules]  = useState([])
     const [finances, setFinances]  = useState([])
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     async function login(data){
         try {
@@ -148,6 +148,8 @@ export const ApiProvider = ({children}) => {
             setSchedules,
             finances,
             setFinances,
+            isAuthenticated,
+            setIsAuthenticated,
         }}
         >
             {children}
