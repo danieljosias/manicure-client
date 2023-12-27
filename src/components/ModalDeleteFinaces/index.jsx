@@ -2,22 +2,14 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   Button,
-  FormControl,
-  FormLabel,
-  Input,
   useDisclosure,
-  Box,
   IconButton,
   Heading,
   Flex,
 } from '@chakra-ui/react'
-import { useContext, useRef, useState } from 'react'
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
+import { useContext, useRef } from 'react'
+import { DeleteIcon } from '@chakra-ui/icons'
 import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
@@ -31,9 +23,8 @@ export const ModalDeleteFinances = ({finance_id}) => {
 
   const DeleteFinances = async () => {
       const res = await deleteFinances(finance_id)
-      console.log(res)
       
-      if(res.status === 204){
+      if(res.name !== 'AxiosError'){
         toast.success("Finança deletada!", {
           position: toast.POSITION.BOTTOM_CENTER,
           theme: 'dark',

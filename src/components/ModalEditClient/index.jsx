@@ -2,29 +2,25 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalFooter,
-  ModalBody,
   ModalCloseButton,
   Button,
   FormControl,
   FormLabel,
   Input,
   useDisclosure,
-  Box,
   IconButton,
   Heading,
   Flex,
 } from '@chakra-ui/react'
 
-import { useContext, useEffect, useRef, useState } from 'react'
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
-import { api } from '../../services/services'
+import { useContext,useRef, useState } from 'react'
+import { EditIcon } from '@chakra-ui/icons'
 import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
 export const ModalEditClient = ({client_id}) => {
-  const { clients, setClients, updateClients, listClients } = useContext(ApiContext)
+  const { setClients, updateClients, listClients } = useContext(ApiContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -58,7 +54,7 @@ export const ModalEditClient = ({client_id}) => {
     }
   }
 
-  const UpdateClients = async () => {
+  const handleUpdateClients = async () => {
     const res = await updateClients(data, client_id)
     
     if(res.name !== 'AxiosError'){
@@ -110,7 +106,7 @@ export const ModalEditClient = ({client_id}) => {
           </FormControl>
         
           <ModalFooter p='10'>
-            <Button onClick={UpdateClients} h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>
+            <Button onClick={handleUpdateClients} h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>
               Editar
             </Button>
           </ModalFooter>

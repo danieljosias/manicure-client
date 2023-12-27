@@ -1,12 +1,11 @@
-import { Card, Text, IconButton, FormControl, Input, Box, Flex, FormLabel, VStack, Heading, HStack, } from '@chakra-ui/react'
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
+import { Text, Box, Flex,  Heading, HStack, } from '@chakra-ui/react'
 import { ModalEditClient } from '../../components/ModalEditClient';
 import { ModalDeleteClient } from '../ModalDeleteClient';
 import { useContext, useEffect } from 'react';
 import { ApiContext } from '../../providers/api';
 
 export const ClientsCard = ({isOpen, name, client}) => {
-    const { clients, setClients, listClients } = useContext(ApiContext)
+    const { clients, setClients} = useContext(ApiContext)
 
     useEffect(()=>{
         fetch("http://127.0.0.1:8000/api/clients/")

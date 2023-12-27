@@ -1,4 +1,4 @@
-import { Flex, Box, Image, IconButton, useConst} from "@chakra-ui/react"
+import { Flex, Box, Image, IconButton } from "@chakra-ui/react"
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
 import { IoMdLogOut } from 'react-icons/io'
@@ -23,7 +23,7 @@ export const Header = ({isOpen, setIsOpen}) => {
 
     const handleLogout= () => {
         navigate('/signin')
-        localStorage.removeItem('token')
+        setIsAuthenticated(false)
     }
     
     return(

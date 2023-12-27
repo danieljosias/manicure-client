@@ -1,13 +1,11 @@
 import { useContext, useState } from 'react'
 import {
   FormControl,
-  FormLabel,
   FormErrorMessage,
   Input,
   Button,
   Heading,
   Flex,
-  Box,
 } from '@chakra-ui/react'
 import { ApiContext } from '../../providers/api'
 import { useNavigate } from 'react-router-dom'
@@ -52,7 +50,7 @@ export const Signin = () =>{
 
   return(
     <Flex flexDirection='column' alignItems='center' justifyContent='center' textAlign='center' h='100vh' gap='5'>
-      <Heading as='h1' >Entrar</Heading>
+      <Heading as='h1'>Entrar</Heading>
      
       <FormControl display='flex' flexDirection='column' justifyContent='center'isInvalid={{isNameError, isEmailError}} bg='#F3CBCB' borderRadius='0px 10px 0px 10px' p='25' h='300px' w='300px' gap='20px'>
         

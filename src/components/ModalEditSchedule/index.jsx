@@ -2,16 +2,13 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalFooter,
-  ModalBody,
   ModalCloseButton,
   Button,
   FormControl,
   FormLabel,
   Input,
   useDisclosure,
-  Box,
   IconButton,
   Heading,
   Flex,
@@ -62,7 +59,7 @@ export const ModalEditSchedule = ({schedule_id}) => {
     }
   }
 
-  const UpdatesSchedules = async () => {
+  const handleUpdatesSchedules = async () => {
     const res = await updateSchedules(data, schedule_id)
 
     if(res.name !== 'AxiosError'){
@@ -84,7 +81,7 @@ export const ModalEditSchedule = ({schedule_id}) => {
   
   return (
     <>
-      <IconButton icon={<EditIcon/>} onClick={onOpen} color='blue' border='none' bg='transparent' h='0' fontSize='20px'>Open Modal</IconButton>
+      <IconButton icon={<EditIcon/>} onClick={onOpen} color='blue' border='none' bg='transparent' h='0' fontSize='20px'></IconButton>
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -119,7 +116,7 @@ export const ModalEditSchedule = ({schedule_id}) => {
           </FormControl>
 
           <ModalFooter p='10'>
-            <Button onClick={UpdatesSchedules} h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>
+            <Button onClick={handleUpdatesSchedules} h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold'  cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>
               Editar
             </Button>
           </ModalFooter>

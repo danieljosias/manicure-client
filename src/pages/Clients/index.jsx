@@ -1,5 +1,5 @@
 import { Header } from '../../components/Header'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import {
   FormControl,
   FormErrorMessage,
@@ -10,7 +10,6 @@ import {
   Icon,
   Box,
   HStack,
-  VStack,
   Flex,
 } from '@chakra-ui/react'
 import { IoMdPeople } from "react-icons/io"
@@ -99,9 +98,9 @@ export const Clients = () => {
             <FormLabel fontWeight='bold' h='25px'>Observações</FormLabel>
             <Input h='30px' type='text' value={observation} onChange={handleObservationChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite algo sobre o cliente'/>
             
-            {!isOpen ?  <Button onClick={handleCreatesClients} h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
+            {!isOpen ? <Button onClick={handleCreatesClients} h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
             :
-            <Button  display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
+            <Button display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
             }
           </FormControl>
         </Box>

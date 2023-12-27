@@ -2,22 +2,19 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalFooter,
-  ModalBody,
   ModalCloseButton,
   Button,
   FormControl,
   FormLabel,
   Input,
   useDisclosure,
-  Box,
   IconButton,
   Heading,
   Flex,
 } from '@chakra-ui/react'
 import { useContext, useRef, useState } from 'react'
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
+import { EditIcon } from '@chakra-ui/icons'
 import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
@@ -76,7 +73,7 @@ export const ModalEditFinance = ({finance_id}) => {
 
   return (
     <>
-      <IconButton icon={<EditIcon/>} onClick={onOpen} color='blue' border='none' bg='transparent' h='0' fontSize='20px'>Open Modal</IconButton>
+      <IconButton icon={<EditIcon/>} onClick={onOpen} color='blue' border='none' bg='transparent' h='0' fontSize='20px'></IconButton>
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}

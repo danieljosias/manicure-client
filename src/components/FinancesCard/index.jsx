@@ -1,6 +1,4 @@
-import { Card, Text, IconButton, FormControl, Input, Box, Flex, FormLabel, VStack, Heading, HStack} from '@chakra-ui/react'
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
-import { ModalEditFinance } from '../ModalEditFinance'
+import { Text, Box, Flex, Heading, HStack} from '@chakra-ui/react'
 import { ModalDeleteFinances } from '../ModalDeleteFinaces'
 import { useContext, useEffect } from 'react'
 import { ApiContext } from '../../providers/api'

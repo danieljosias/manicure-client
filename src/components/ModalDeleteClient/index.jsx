@@ -2,22 +2,14 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   Button,
-  FormControl,
-  FormLabel,
-  Input,
   useDisclosure,
-  Box,
   IconButton,
   Heading,
   Flex,
 } from '@chakra-ui/react'
-import { useContext, useEffect, useRef, useState } from 'react'
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
+import { useContext, useRef} from 'react'
+import { DeleteIcon } from '@chakra-ui/icons'
 import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
