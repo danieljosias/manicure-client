@@ -69,6 +69,13 @@ export const ModalEditSchedule = ({schedule_id}) => {
       })
       const response = await listSchedules()
       setSchedules(response.data)
+
+      setName('')
+      setCellphone('')
+      setDate('')
+      setHour('') 
+      setService('')
+      setPrice('')
       
       onClose()
     }else{

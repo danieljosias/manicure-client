@@ -94,13 +94,13 @@ export const Finances = () => {
         <Box>
           <FormControl isInvalid={{isDescriptionError, isTypeError, isValueError}} display='flex' gap='10px' flexDirection='column' justifyContent='center' bg='#F3CBCB' borderRadius='0px 10px 0px 10px' p='25' h='350px'>
             {description === '' ? <FormErrorMessage fontWeight='bold' h='30px'>Descrição é obrigatória.</FormErrorMessage> : <FormErrorMessage fontWeight='bold' h='30px'>Descrição</FormErrorMessage>}
-            <Input h='30px' type='text' value={description} onChange={handleDescriptionChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite a descrição'/>
+            <Input h='30px' type='text' value={description} onChange={handleDescriptionChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Ex: Salário'/>
             
             {type === '' ? <FormErrorMessage fontWeight='bold' h='30px'>Tipo é obrigatório.</FormErrorMessage> : <FormErrorMessage fontWeight='bold' h='30px'>Tipo</FormErrorMessage>}
-            <Input h='30px' type='text' value={type} onChange={handleTypeChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite o tipo'/>
+            <Input h='30px' type='text' value={type} onChange={handleTypeChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Ex: Entrada ou Saída'/>
             
             {value === '' ? <FormErrorMessage fontWeight='bold' h='30px'>Valor é obrigatória.</FormErrorMessage> : <FormErrorMessage fontWeight='bold' h='30px'>Valor</FormErrorMessage>}
-            <Input h='30px' type='text' value={value} onChange={handleValueChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite o valor'/>
+            <Input h='30px' type='text' value={value} onChange={handleValueChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Ex: 1000'/>
             
             {!isOpen ?  <Button onClick={handleCreatesFinances} h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Ok</Button>
             :
