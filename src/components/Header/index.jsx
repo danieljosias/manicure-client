@@ -39,13 +39,13 @@ export const Header = ({isOpen, setIsOpen}) => {
   
            {isOpen &&
             <Flex flexDirection='column' textAlign='center' position='absolute' top='110px' bg='#D9D9D9' h='500vh' w='100vw' p='10px'>
-                <Box h='70px' _hover={{'background-color': '#F3CBCB'}} p='20px'>
+                <Box h='70px' _hover={{'backgroundColor': '#F3CBCB'}} p='20px'>
                     <Link to="/clients">Clientes</Link>
                 </Box>
-                <Box h='70px' _hover={{'background-color': '#F3CBCB'}} p='20px'>
+                <Box h='70px' _hover={{'backgroundColor': '#F3CBCB'}} p='20px'>
                     <Link to="/schedules">Agendamentos</Link>
                 </Box>
-                <Box h='70px' _hover={{'background-color': '#F3CBCB'}} p='20px'>
+                <Box h='70px' _hover={{'backgroundColor': '#F3CBCB'}} p='20px'>
                     <Link to="/finances">Finanças</Link>
                 </Box>
             </Flex>

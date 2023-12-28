@@ -102,9 +102,9 @@ export const Finances = () => {
             {value === '' ? <FormErrorMessage fontWeight='bold' h='30px'>Valor é obrigatória.</FormErrorMessage> : <FormErrorMessage fontWeight='bold' h='30px'>Valor</FormErrorMessage>}
             <Input h='30px' type='text' value={value} onChange={handleValueChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Ex: 1000'/>
             
-            {!isOpen ?  <Button onClick={handleCreatesFinances} h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Ok</Button>
+            {!isOpen ?  <Button onClick={handleCreatesFinances} h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{backgroundColor: 'white', color: 'black', transition: 'ease 1s'}}>Ok</Button>
             :
-            <Button display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Ok</Button>
+            <Button display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{backgroundColor: 'white', color: 'black', transition: 'ease 1s'}}>Ok</Button>
             }
           </FormControl>
         </Box>

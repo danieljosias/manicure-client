@@ -120,9 +120,9 @@ export const Schedules = () => {
             {price === '' ? <FormErrorMessage fontWeight='bold' h='30px'>Preço é obrigatório.</FormErrorMessage> : <FormErrorMessage fontWeight='bold' h='30px'>Preço</FormErrorMessage>}
             <Input h='30px' type='text' value={price} onChange={handlePriceChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite o preço do serviço'/>
             
-            {!isOpen ?  <Button onClick={handleCreatesSchedules} h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
+            {!isOpen ?  <Button onClick={handleCreatesSchedules} h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{backgroundColor: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
             :
-            <Button display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
+            <Button display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{backgroundColor: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
             }
           </FormControl>
         </Box>
