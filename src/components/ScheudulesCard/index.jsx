@@ -24,7 +24,7 @@ export const SchedulesCard = ({isOpen}) => {
                     <Heading as='h3' mb='10'><Text>Data: {schedule.date}</Text></Heading>
                     <Heading as='h3' mb='10'><Text>Hora: {schedule.hour}</Text></Heading>
                     <Heading as='h3' mb='10'><Text>Serviço: {schedule.service}</Text></Heading>
-                    <Heading as='h3' mb='10'><Text>Preço: {schedule.price}</Text></Heading>
+                    <Heading as='h3' mb='10'><Text>Preço: R$ {schedule.price}</Text></Heading>
                 </Box>
                 
                 <Box>
