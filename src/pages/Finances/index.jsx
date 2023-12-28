@@ -65,12 +65,12 @@ export const Finances = () => {
   }
   
   const datas = finances.filter((finance) => finance.type === 'Entrada')
-  const saida = datas.reduce((acc, data) => {
+  const entrada = datas.reduce((acc, data) => {
     return Number(acc) + Number(data.value)
   }, 0)
 
   const itens = finances.filter((finance) => finance.type === 'Saída')
-  const entrada = itens.reduce((acc, itens) => {
+  const saida= itens.reduce((acc, itens) => {
     return Number(acc) + Number(itens.value)
   }, 0)
 

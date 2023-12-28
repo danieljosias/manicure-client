@@ -1,5 +1,6 @@
 import { Text, Box, Flex, Heading, HStack} from '@chakra-ui/react'
 import { ModalDeleteFinances } from '../ModalDeleteFinaces'
+import { ModalEditFinance } from '../ModalEditFinance'
 import { useContext, useEffect } from 'react'
 import { ApiContext } from '../../providers/api'
 

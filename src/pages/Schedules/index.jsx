@@ -10,6 +10,7 @@ import {
   Box,
   HStack,
   VStack,
+  Flex,
 } from '@chakra-ui/react'
 import { MdContacts } from "react-icons/md";
 import { SchedulesCard } from '../../components/ScheudulesCard';
