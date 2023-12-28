@@ -34,9 +34,9 @@ export const Clients = () => {
   const isNameError = name === ''
   const isAddressError = address === ''
   const isCelphoneError = cellphone === ''
-
+  
   const user_id = '2558707c-c038-431b-a071-270109cd557b'
-
+  
   const data = {
     name: name.substring(0,1).toUpperCase().concat(name.substring(1)),
     address: address.substring(0,1).toUpperCase().concat(address.substring(1)),
@@ -44,16 +44,22 @@ export const Clients = () => {
     observation: observation.substring(0,1).toUpperCase().concat(observation.substring(1)),
     user_id: user_id,
   }
- 
+
+  let res = 0 
   const handleCreatesClients = async () => {
-    const res = await createsClients(data)
-    
-    if(res.name !== 'AxiosError'){
-      toast.success("Cliente criado!", {
-        position: toast.POSITION.BOTTOM_CENTER,
-        theme: 'dark',
-      })
-      
+    if( data.observation === ''){
+      for (const key in data) {
+        if(key === 'observation'){
+          data['observation'] = 'Sem obsevação'
+        }
+      }
+      res = await createsClients(data)
+      if(res.name !== 'AxiosError'){
+        toast.success("Cliente criado!", {
+          position: toast.POSITION.BOTTOM_CENTER,
+          theme: 'dark',
+        })
+      }
       const response = await listClients()
       setClients(response.data)
 
@@ -67,8 +73,9 @@ export const Clients = () => {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
-    } 
+    }
   }
+
   return(
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen}/>
@@ -98,9 +105,9 @@ export const Clients = () => {
             <FormLabel fontWeight='bold' h='25px'>Observações</FormLabel>
             <Input h='30px' type='text' value={observation} onChange={handleObservationChange} border='none' bg='#FFFFFF' color='#000000' borderRadius='6px' fontWeight='bold' fontSize='large' placeholder='Digite algo sobre o cliente'/>
             
-            {!isOpen ? <Button onClick={handleCreatesClients} h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
+            {!isOpen ? <Button onClick={handleCreatesClients} h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{backgroundColor: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
             :
-            <Button display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{background: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
+            <Button display='none' h='30px' type='submit' bg='#000000' color='white' border='none' borderRadius='10px' fontWeight='bold' mt='15' cursor='pointer' fontSize='large' _hover={{backgroundColor: 'white', color: 'black', transition: 'ease 1s'}}>Criar</Button>
             }
           </FormControl>
         </Box>

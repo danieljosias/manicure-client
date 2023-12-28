@@ -62,6 +62,10 @@ export const ModalEditFinance = ({finance_id}) => {
       const response = await listFinances()
       setFinances(response.data)
 
+      setDescription('')
+      setType('')
+      setValue('')
+
       onClose()
     }else{
       toast.error("Campo em branco!", {
@@ -89,7 +93,7 @@ export const ModalEditFinance = ({finance_id}) => {
           
           <FormControl p='10'>
             <FormLabel color='black' fontWeight='bold'>Descrição</FormLabel>
-            <Input ref={initialRef} value={description} onChange={handleDescriptionChange} placeholder='Digite a descrição' border='none' bg='#000000' color='#FFFFFF' borderRadius='6px' fontWeight='bold' fontSize='large' h='40px' w='100%' mb='20'/>
+            <Input ref={initialRef} value={description} onChange={handleDescriptionChange} placeholder='Ex: Salário' border='none' bg='#000000' color='#FFFFFF' borderRadius='6px' fontWeight='bold' fontSize='large' h='40px' w='100%' mb='20'/>
             
             <FormLabel fontWeight='bold'>Tipo</FormLabel>
             <Input placeholder='Ex: Entrada ou Saída' value={type} onChange={handleTypeChange}  border='none' bg='#000000' color='#FFFFFF' borderRadius='6px' fontWeight='bold' fontSize='large' h='40px' w='100%' mb='20'/>

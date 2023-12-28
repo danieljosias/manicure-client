@@ -66,6 +66,11 @@ export const ModalEditClient = ({client_id}) => {
       const response = await listClients()
       setClients(response.data)
 
+      setName('')
+      setAddress('')
+      setCellphone('')
+      setObservation('')
+
       onClose()
     }else{
       toast.error("Campo em branco!", {
