@@ -17,7 +17,7 @@ export const FiancesCard = ({isOpen}) => {
     return(
         <>
         {finances.map((finance,i)=>{
-            return <Flex key={i} bg='white' justifyContent='space-between' p='25' borderRadius='0px 10px 0px 10px'>
+            return <Flex key={i} mb='10px' bg='white' justifyContent='space-between' p='25' borderRadius='0px 10px 0px 10px'>
             <Box>
                 <Heading as='h3' mb='10'><Text>Descrição: {finance.description}</Text></Heading>
                 <Heading as='h3' mb='10'><Text>Tipo: {finance.type}</Text></Heading>

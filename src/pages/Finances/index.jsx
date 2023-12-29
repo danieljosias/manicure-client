@@ -121,8 +121,10 @@ export const Finances = () => {
             </HStack>
           </Box>
 
-          <Flex bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
+          <Flex bg='#F3CBCB' flexDirection='column' maxH='500px'  p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
+          <Box overflowY='scroll' bg='#D9D9D9' mb='10px' p='10'>
             <FiancesCard isOpen={isOpen}/>
+          </Box>
 
             <Flex flexDirection='column' justifyContent='space-between' gap='10'>
                 <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>

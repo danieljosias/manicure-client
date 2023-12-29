@@ -139,8 +139,10 @@ export const Schedules = () => {
             </HStack>
           </Box>
   
-          <Flex bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
-            <SchedulesCard isOpen={isOpen}/>
+          <Flex bg='#F3CBCB' flexDirection='column' maxH='500px'  p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
+            <Box overflowY='scroll' bg='#D9D9D9' mb='10px' p='10'>
+              <SchedulesCard isOpen={isOpen}/>
+            </Box>
 
             <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
               <Heading as='h3'>Total: R$ {sun}</Heading>

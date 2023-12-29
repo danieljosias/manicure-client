@@ -140,10 +140,9 @@ export const Clients = () => {
             </HStack>
           </Box>
           
-          <Flex bg='#F3CBCB' maxH='400px'  flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
-            <Box overflowY='scroll' bg='#D9D9D9' borderRadius='0px 10px 0px 10px' mb='10px'>
+          <Flex bg='#F3CBCB' maxH='500px'  flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px'>
+            <Box overflowY='scroll' bg='#D9D9D9' mb='10px' p='10'>
               <ClientsCard isOpen={isOpen} />
-
             </Box>
 
             <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
