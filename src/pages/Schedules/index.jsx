@@ -42,7 +42,7 @@ export const Schedules = () => {
   const isServiceError = service === ''
   const isPriceError = price === ''
 
-  const user_id = '2558707c-c038-431b-a071-270109cd557b'
+  const user_id = 'a1fda0f5-5d66-454d-a811-7df773fca6b0'
 
   const data = {
     name: name.substring(0,1).toUpperCase().concat(name.substring(1)),
