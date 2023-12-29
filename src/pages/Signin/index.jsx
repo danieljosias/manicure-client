@@ -7,13 +7,13 @@ import {
   Heading,
   Flex,
   IconButton,
-  HStack,
 } from '@chakra-ui/react'
 import { ApiContext } from '../../providers/api'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { AiFillEye } from "react-icons/ai"
 import { PiEyeClosedBold } from "react-icons/pi";
+
 export const Signin = () =>{
   const { login, setIsAuthenticated } = useContext(ApiContext)
   
@@ -30,8 +30,8 @@ export const Signin = () =>{
   const isEmailError = password === ''
   
   const data = {
-    username: name,
-    password: password
+    username: name.toLowerCase(),
+    password: password.toLowerCase()
   }
 
   const handleSignin = async () => {
@@ -39,13 +39,13 @@ export const Signin = () =>{
     
     if(res.name === 'AxiosError'){
       toast.error("Nome ou senha inválidos!", {
-        position: toast.POSITION.BOTTOM_CENTER,
+        position: toast.POSITION.TOP_CENTER,
         theme: 'dark',
       })
     }else{
       toast.success("Seja bem-vinda!", {
-        position: toast.POSITION.BOTTOM_CENTER,
-        theme: 'dark',
+        position: toast.POSITION.TOP_CENTER,
+        theme: 'dark'
       })
       setIsAuthenticated(true);
       navigate('/clients')
