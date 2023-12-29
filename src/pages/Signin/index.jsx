@@ -53,11 +53,11 @@ export const Signin = () =>{
   }
 
   const showPassword = () => {
-    setShow(true)
+    setShow(false)
   }
   
   const hiddenPassword = () => {
-    setShow(false)
+    setShow(true)
   }
 
   return(
@@ -76,9 +76,9 @@ export const Signin = () =>{
         <Input h='40px' type='text' id='password' value={password} onChange={handlePasswordChange} border='none' bg='#000000' color='#FFFFFF' borderRadius='6px' fontWeight='bold' fontSize='large'/>
         }
         {show === true? 
-        <IconButton h='0' w='10'  position='relative' top='-40' color='white' left='100' aria-label='hidden password' icon={<PiEyeClosedBold />} border='none' bg='transparent' onClick={hiddenPassword}/>
-        :
         <IconButton h='0' w='10'  position='relative' top='-40' color='white' left='100' aria-label='show password' icon={<AiFillEye />} border='none' bg='transparent' onClick={showPassword}/>
+        :
+        <IconButton h='0' w='10'  position='relative' top='-40' color='white' left='100' aria-label='hidden password' icon={<PiEyeClosedBold />} border='none' bg='transparent' onClick={hiddenPassword}/>
         }
         <Button onClick={handleSignin} h='40px' type='submit' bg='#FFFFFF' w='100%' border='none' borderRadius='10px' fontWeight='bold' cursor='pointer' fontSize='large' _hover={{'background':'black', 'color':'white'}} transition='ease 1s'>Entrar</Button>
       </FormControl>
