@@ -19,12 +19,12 @@ export const SchedulesCard = ({isOpen}) => {
             {schedules?.map((schedule, i)=>{
                 return <Flex flexDirection='column'  mb='10px'  key={i} bg='white' gap='20' justifyContent='space-between' p='25' borderRadius='0px 10px 0px 10px'>
                 <Box>
-                    <Heading as='h3' mb='10'><Text>Nome: {schedule.name}</Text></Heading>
-                    <Heading as='h3' mb='10'><Text>Celular: {schedule.cellphone}</Text></Heading>
-                    <Heading as='h3' mb='10'><Text>Data: {schedule.date}</Text></Heading>
-                    <Heading as='h3' mb='10'><Text>Hora: {schedule.hour}</Text></Heading>
-                    <Heading as='h3' mb='10'><Text>Serviço: {schedule.service}</Text></Heading>
-                    <Heading as='h3' mb='10'><Text>Preço: R$ {schedule.price}</Text></Heading>
+                    <Heading as='h3' mb='10'><Text wordBreak='break-all'>Nome: {schedule.name}</Text></Heading>
+                    <Heading as='h3' mb='10'><Text wordBreak='break-all'>Celular: {schedule.cellphone}</Text></Heading>
+                    <Heading as='h3' mb='10'><Text wordBreak='break-all'>Data: {schedule.date}</Text></Heading>
+                    <Heading as='h3' mb='10'><Text wordBreak='break-all'>Hora: {schedule.hour}</Text></Heading>
+                    <Heading as='h3' mb='10'><Text wordBreak='break-all'>Serviço: {schedule.service}</Text></Heading>
+                    <Heading as='h3' mb='10'><Text wordBreak='break-all'>Preço: R$ {schedule.price}</Text></Heading>
                 </Box>
                 
                 <Box>

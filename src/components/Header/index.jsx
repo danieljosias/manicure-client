@@ -7,6 +7,7 @@ import { IoMdClose } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { ApiContext } from "../../providers/api";
+import { toast } from "react-toastify";
 
 export const Header = ({isOpen, setIsOpen}) => {
     const { setIsAuthenticated } = useContext(ApiContext)
@@ -24,6 +25,11 @@ export const Header = ({isOpen, setIsOpen}) => {
     const handleLogout= () => {
         navigate('/signin')
         setIsAuthenticated(false)
+        toast.success("Até logo!", {
+            position: toast.POSITION.TOP_CENTER,
+            theme: 'dark',
+            duration: 2000,
+          })
     }
     
     return(

@@ -53,42 +53,48 @@ export const Clients = () => {
           data['observation'] = 'Sem observação'
         }
       }
-      res = await createsClients(data)
       
-      if(res.name !== 'AxiosError'){
-        toast.success("Cliente criado!", {
-          position: toast.POSITION.BOTTOM_CENTER,
-          theme: 'dark',
-        })
-      }
-      const response = await listClients()
-      setClients(response.data)
-
-      setName('')
-      setAddress('')
-      setCellphone('')
-      setObservation('')
-
-    }else{
       res = await createsClients(data)
       if(res.name !== 'AxiosError'){
         toast.success("Cliente criado!", {
           position: toast.POSITION.BOTTOM_CENTER,
           theme: 'dark',
         })
+
+        const response = await listClients()
+        setClients(response.data)
+  
+        setName('')
+        setAddress('')
+        setCellphone('')
+        setObservation('')
+      }else{
+        toast.error("Campo vazio!", {
+          position: toast.POSITION.BOTTOM_CENTER,
+          theme: 'dark',
+        })
       }
-      const response = await listClients()
-      setClients(response.data)
+    }else if( data.name !== '' && data.address !== '' && data.cellphone !== '' && data.observation !== ''){
+      res = await createsClients(data)
+      if(res.name !== 'AxiosError'){
+        toast.success("Cliente criado!", {
+          position: toast.POSITION.BOTTOM_CENTER,
+          theme: 'dark',
+        })
 
-      setName('')
-      setAddress('')
-      setCellphone('')
-      setObservation('')
-
-      toast.error("Campo vazio!", {
-        position: toast.POSITION.BOTTOM_CENTER,
-        theme: 'dark',
-      })
+        const response = await listClients()
+        setClients(response.data)
+  
+        setName('')
+        setAddress('')
+        setCellphone('')
+        setObservation('')
+      }else{
+        toast.error("Campo vazio!", {
+          position: toast.POSITION.BOTTOM_CENTER,
+          theme: 'dark',
+        })
+      }
     }
   }
 
