@@ -45,15 +45,16 @@ export const Clients = () => {
     user_id: user_id,
   }
 
-  let res = 0 
+  let res = ''
   const handleCreatesClients = async () => {
     if( data.observation === ''){
       for (const key in data) {
         if(key === 'observation'){
-          data['observation'] = 'Sem obsevação'
+          data['observation'] = 'Sem observação'
         }
       }
       res = await createsClients(data)
+      console.log(res)
       if(res.name !== 'AxiosError'){
         toast.success("Cliente criado!", {
           position: toast.POSITION.BOTTOM_CENTER,
@@ -69,6 +70,21 @@ export const Clients = () => {
       setObservation('')
 
     }else{
+      res = await createsClients(data)
+      if(res.name !== 'AxiosError'){
+        toast.success("Cliente criado!", {
+          position: toast.POSITION.BOTTOM_CENTER,
+          theme: 'dark',
+        })
+      }
+      const response = await listClients()
+      setClients(response.data)
+
+      setName('')
+      setAddress('')
+      setCellphone('')
+      setObservation('')
+
       toast.error("Campo vazio!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
@@ -124,8 +140,10 @@ export const Clients = () => {
             </HStack>
           </Box>
           
-          <Flex overflowY='scroll' bg='#F3CBCB' flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
-            <ClientsCard isOpen={isOpen} />
+          <Flex bg='#F3CBCB' maxH='500px'  flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px'>
+            <Box overflowY='scroll' bg='#D9D9D9' mb='10px' p='10'>
+              <ClientsCard isOpen={isOpen} />
+            </Box>
 
             <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
               <Heading as='h3'>Total: {clients.length}</Heading>

@@ -17,7 +17,7 @@ export const ClientsCard = ({isOpen, name, client}) => {
     return(
         <>
             {clients?.map((client, i)=>{
-              return <Flex flexDirection='column' gap='20'justifyContent='space-between' key={i} bg='white'  p='25' borderRadius='0px 10px 0px 10px'>
+              return <Flex flexDirection='column' mb='10px' gap='20'justifyContent='space-between' key={i} bg='white'  p='25'  borderRadius='0px 10px 0px 10px'>
                     <Box>
                         <Heading as='h3' mb='10'><Text>Nome: {client.name}</Text></Heading>
                         <Heading as='h3' mb='10'><Text>Endereço: {client.address}</Text></Heading>
