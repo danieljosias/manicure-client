@@ -69,7 +69,7 @@ export const Clients = () => {
         setCellphone('')
         setObservation('')
       }else{
-        toast.error("Campo vazio!", {
+        toast.error("Campo em branco!", {
           position: toast.POSITION.BOTTOM_CENTER,
           theme: 'dark',
         })
@@ -90,7 +90,7 @@ export const Clients = () => {
         setCellphone('')
         setObservation('')
       }else{
-        toast.error("Campo vazio!", {
+        toast.error("Campo em branco!", {
           position: toast.POSITION.BOTTOM_CENTER,
           theme: 'dark',
         })

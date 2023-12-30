@@ -51,9 +51,15 @@ export const ModalEditFinance = ({finance_id}) => {
   }
 
   const handleUpdatesFinances = async () => {
-    const res = await updateFinances(data, finance_id)
-
-    if(res.name !== 'AxiosError'){
+    if(Object.keys(data).length === 1){
+      toast.error("Campo em branco!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+    }else if(data.description !== '' && data.type !== '' && data.value !== '' ){
+      const res = await updateFinances(data, finance_id)
+    
+      if(res.name !== 'AxiosError'){
       toast.success("Finança atualizada!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
@@ -72,7 +78,7 @@ export const ModalEditFinance = ({finance_id}) => {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
-    }
+    }}
   }
 
   return (

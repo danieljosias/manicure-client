@@ -60,9 +60,15 @@ export const ModalEditSchedule = ({schedule_id}) => {
   }
 
   const handleUpdatesSchedules = async () => {
-    const res = await updateSchedules(data, schedule_id)
-
-    if(res.name !== 'AxiosError'){
+    if(Object.keys(data).length === 1){
+      toast.error("Campo em branco!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+    }else if(data.name !== '' && data.cellphone !== '' && data.date !== '' && data.hour !== '' && data.service !== '' && data.price !== ''){
+      const res = await updateSchedules(data, schedule_id)
+      
+      if(res.name !== 'AxiosError'){
       toast.success("Cliente atualizado!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
@@ -83,7 +89,7 @@ export const ModalEditSchedule = ({schedule_id}) => {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
-    }
+    }}
   }
   
   return (

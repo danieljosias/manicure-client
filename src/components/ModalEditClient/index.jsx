@@ -55,28 +55,34 @@ export const ModalEditClient = ({client_id}) => {
   }
 
   const handleUpdateClients = async () => {
-    const res = await updateClients(data, client_id)
-    
-    if(res.name !== 'AxiosError'){
-      toast.success("Cliente atualizado!", {
-        position: toast.POSITION.BOTTOM_CENTER,
-        theme: 'dark',
-      })
-
-      const response = await listClients()
-      setClients(response.data)
-
-      setName('')
-      setAddress('')
-      setCellphone('')
-      setObservation('')
-
-      onClose()
-    }else{
+    if(Object.keys(data).length === 1){
       toast.error("Campo em branco!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
+    }else if(data.name !== '' && data.address !== '' && data.cellphone !== '' && data.observation !== ''){
+      const res = await updateClients(data, client_id)
+      if(res.name !== 'AxiosError'){
+        toast.success("Cliente atualizado!", {
+          position: toast.POSITION.BOTTOM_CENTER,
+          theme: 'dark',
+        })
+  
+        const response = await listClients()
+        setClients(response.data)
+  
+        setName('')
+        setAddress('')
+        setCellphone('')
+        setObservation('')
+  
+        onClose()
+      }else{
+        toast.error("Campo em branco!", {
+          position: toast.POSITION.BOTTOM_CENTER,
+          theme: 'dark',
+        })
+      }
     }
   }
   

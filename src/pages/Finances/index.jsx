@@ -44,7 +44,7 @@ export const Finances = () => {
   const handleCreatesFinances = async () => {
     const res = await createFinances(data)
     if(res.name !== 'AxiosError'){
-      toast.success("Financiamento criado!", {
+      toast.success("Finança criada!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
@@ -57,7 +57,7 @@ export const Finances = () => {
       setValue('')
       
     }else{
-      toast.error("Campo vazio!", {
+      toast.error("Campo em branco!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
