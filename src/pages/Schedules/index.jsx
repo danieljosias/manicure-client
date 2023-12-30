@@ -74,7 +74,7 @@ export const Schedules = () => {
       setPrice('')
       
     }else{
-      toast.error("Campo vazio!", {
+      toast.error("Campo em branco!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
@@ -92,7 +92,7 @@ export const Schedules = () => {
         <Box>
           <HStack spacing={10} h='30px' textAlign='center' alignItems='center' justifyContent='center'>
             <Box h='0px'>
-              <Heading as='h3' h='0px'>Criação de Agendamento</Heading>
+              <Heading as='h3' h='0px'>Criação de Agendamentos</Heading>
             </Box>
             <Box h='0px'>
               <Icon as={MdContacts} fontSize='20px'/>
