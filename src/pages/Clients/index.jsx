@@ -12,7 +12,7 @@ import {
   HStack,
   Flex,
 } from '@chakra-ui/react'
-import { IoMdPeople } from "react-icons/io"
+import { IoMdPeople } from 'react-icons/io'
 import { ClientsCard } from '../../components/ClientsCard'
 import { toast } from 'react-toastify'
 import { ApiContext } from '../../providers/api'
