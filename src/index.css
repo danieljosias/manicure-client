@@ -1,0 +1,27 @@
+*{
+    font-family: 'Josefin Slab', serif;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    height: 50px;
+    font-size: 20px;
+}
+
+button{
+    cursor: pointer;
+}
+
+input[type='file']{
+    display: none;
+}
+
+:root{
+    --toastify-color-success: #F3CBCB;
+    --toastify-color-error: #F3CBCB;
+    --toastify-icon-color-success: var(--toastify-color-success);
+    --toastify-icon-color-error: var(--toastify-color-error);
+}
+
