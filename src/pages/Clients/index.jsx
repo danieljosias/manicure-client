@@ -40,6 +40,7 @@ export const Clients = () => {
     address: address.substring(0,1).toUpperCase().concat(address.substring(1)),
     cellphone: cellphone.substring(0,1).toUpperCase().concat(cellphone.substring(1)),
     observation: observation.substring(0,1).toUpperCase().concat(observation.substring(1)),
+    id: Math.floor(Date.now() * Math.random()).toString(36),
   }
 
   const handleCreatesClients = async () => {
@@ -142,9 +143,15 @@ export const Clients = () => {
           </Box>
           
           <Flex bg='#F3CBCB' maxH='500px'  flexDirection='column' p='25' gap='20px' borderRadius='0px 10px 0px 10px'>
+           {clients?.length === 0?
+            <Flex justifyContent='center' alignItems='center' bg='#D9D9D9' mb='10px' p='10' h='200px'>
+             <Heading as='h3'>Não há clientes</Heading>
+            </Flex> 
+            :
             <Box overflowY='scroll' bg='#D9D9D9' mb='10px' p='10'>
               <ClientsCard isOpen={isOpen} />
-            </Box>
+          </Box>
+          }
 
             <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
               <Heading as='h3'>Total: {clients.length}</Heading>

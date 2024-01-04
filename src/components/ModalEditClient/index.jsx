@@ -20,7 +20,7 @@ import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
 export const ModalEditClient = ({client_id}) => {
-  const { setClients, updateClients, listClients } = useContext(ApiContext)
+  const { setClients, updateClients, listClients, clients } = useContext(ApiContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -37,14 +37,12 @@ export const ModalEditClient = ({client_id}) => {
   const handleCellphoneChange = (e) => setCellphone(e.target.value)
   const handleObservationChange = (e) => setObservation(e.target.value)
 
-  const user_id = 'a1fda0f5-5d66-454d-a811-7df773fca6b0'
   
   const data = {
     name: name.substring(0,1).toUpperCase().concat(name.substring(1)),
     address: address.substring(0,1).toUpperCase().concat(address.substring(1)),
     cellphone: cellphone.substring(0,1).toUpperCase().concat(cellphone.substring(1)),
     observation: observation.substring(0,1).toUpperCase().concat(observation.substring(1)),
-    user_id: user_id,
   }
   
   for (const key in data){
@@ -61,15 +59,22 @@ export const ModalEditClient = ({client_id}) => {
         theme: 'dark',
       })
     }else if(data.name !== '' && data.address !== '' && data.cellphone !== '' && data.observation !== ''){
-      const res = await updateClients(data, client_id)
-      if(res.name !== 'AxiosError'){
         toast.success("Cliente atualizado!", {
           position: toast.POSITION.BOTTOM_CENTER,
           theme: 'dark',
         })
   
-        const response = await listClients()
-        setClients(response.data)
+       const idForUpdate = client_id 
+       const newName = data.name
+       const newAddress = data.address
+       const newCellphone = data.cellphone
+       const newObservation = data.observation
+       
+       const clientsUpdates = clients.map((client) =>
+        client.id === idForUpdate ? { ...client, name: newName, address: newAddress, cellphone: newCellphone, observation: newObservation } : client
+      );
+
+       setClients(clientsUpdates)
   
         setName('')
         setAddress('')
@@ -82,7 +87,6 @@ export const ModalEditClient = ({client_id}) => {
           position: toast.POSITION.BOTTOM_CENTER,
           theme: 'dark',
         })
-      }
     }
   }
   

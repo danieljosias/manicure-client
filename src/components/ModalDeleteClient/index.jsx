@@ -14,26 +14,27 @@ import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
 export const ModalDeleteClient = ({client_id}) => {
-  const { deleteClients, setClients, listClients } = useContext(ApiContext)
+  const { deleteClients, setClients, listClients, clients } = useContext(ApiContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = useRef(null)
   const finalRef = useRef(null)
 
-  const DeleteClients = async () => {
-    const res = await deleteClients(client_id)
-    
-    if(res.name !== 'AxiosError'){
-      toast.success("Cliente deletado!", {
-        position: toast.POSITION.BOTTOM_CENTER,
-        theme: 'dark',
-      })
-      const response = await listClients()
-      setClients(response.data)
+  const idForDelete = client_id
 
-      onClose()
-    }
+  const DeleteClients = async () => {
+    toast.success("Cliente deletado!", {
+      position: toast.POSITION.BOTTOM_CENTER,
+      theme: 'dark',
+    })
+
+    const clientsDelete = clients.filter((client) => client.id !== idForDelete)
+
+    setClients(clientsDelete)
+
+    onClose()
+    
   }
   
   return (
