@@ -15,7 +15,7 @@ import { AiFillEye } from "react-icons/ai"
 import { PiEyeClosedBold } from "react-icons/pi";
 
 export const Signin = () =>{
-  const { login, setIsAuthenticated } = useContext(ApiContext)
+  const { setIsAuthenticated } = useContext(ApiContext)
   
   const navigate = useNavigate()
   
@@ -35,20 +35,23 @@ export const Signin = () =>{
   }
 
   const handleSignin = async () => {
-    const res = await login(data)
-    
-    if(res.name === 'AxiosError'){
+    if(data.username === '' || data.password === ''){
       toast.error("Nome ou senha inválidos!", {
         position: toast.POSITION.TOP_CENTER,
         theme: 'dark',
       })
-    }else{
+    }else if(data.username === 'suelen' && data.password === 'suelen'){
       toast.success("Seja bem-vinda!", {
         position: toast.POSITION.TOP_CENTER,
         theme: 'dark'
       })
       setIsAuthenticated(true);
       navigate('/clients')
+    }else{
+      toast.error("Nome ou senha inválidos!", {
+        position: toast.POSITION.TOP_CENTER,
+        theme: 'dark',
+      })
     }
   }
 
