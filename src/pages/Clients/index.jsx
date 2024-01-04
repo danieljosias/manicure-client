@@ -35,17 +35,13 @@ export const Clients = () => {
   const isAddressError = address === ''
   const isCelphoneError = cellphone === ''
   
-  const user_id = 'a1fda0f5-5d66-454d-a811-7df773fca6b0'
-  
   const data = {
     name: name.substring(0,1).toUpperCase().concat(name.substring(1)),
     address: address.substring(0,1).toUpperCase().concat(address.substring(1)),
     cellphone: cellphone.substring(0,1).toUpperCase().concat(cellphone.substring(1)),
     observation: observation.substring(0,1).toUpperCase().concat(observation.substring(1)),
-    user_id: user_id,
   }
 
-  let res = ''
   const handleCreatesClients = async () => {
     if( data.observation === ''){
       for (const key in data) {
@@ -54,36 +50,15 @@ export const Clients = () => {
         }
       }
       
-      res = await createsClients(data)
-      if(res.name !== 'AxiosError'){
+      if(data.name !== '' && data.address !== '' && data.cellphone !== '' ){
         toast.success("Cliente criado!", {
           position: toast.POSITION.BOTTOM_CENTER,
           theme: 'dark',
         })
 
-        const response = await listClients()
-        setClients(response.data)
-  
-        setName('')
-        setAddress('')
-        setCellphone('')
-        setObservation('')
-      }else{
-        toast.error("Campo em branco!", {
-          position: toast.POSITION.BOTTOM_CENTER,
-          theme: 'dark',
-        })
-      }
-    }else if( data.name !== '' && data.address !== '' && data.cellphone !== '' && data.observation !== ''){
-      res = await createsClients(data)
-      if(res.name !== 'AxiosError'){
-        toast.success("Cliente criado!", {
-          position: toast.POSITION.BOTTOM_CENTER,
-          theme: 'dark',
-        })
-
-        const response = await listClients()
-        setClients(response.data)
+        const newItem = data
+        const newItems = [...clients, newItem]
+        setClients(newItems)
   
         setName('')
         setAddress('')
@@ -96,6 +71,26 @@ export const Clients = () => {
         })
       }
     }
+    else if(data.name !== '' && data.address !== '' && data.cellphone !== '' && data.observation !== ''){
+      toast.success("Cliente criado!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+
+      const newItem = data
+      const newItems = [...clients, newItem]
+      setClients(newItems)
+
+      setName('')
+      setAddress('')
+      setCellphone('')
+      setObservation('')
+    }else{
+      toast.error("Campo em branco!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      })
+      }
   }
 
   return(
