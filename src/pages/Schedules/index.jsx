@@ -1,5 +1,5 @@
 import { Header } from '../../components/Header'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {
   FormControl,
   FormErrorMessage,
@@ -82,6 +82,16 @@ export const Schedules = () => {
     return Number(acc) + Number(schedule.price)
   }, 0)
 
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      const message = 'Você tem alterações não salvas. Tem certeza que deseja sair?'
+      e.returnValue = message
+      return message
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+  }, [])
+
   return(
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen}/>
@@ -147,7 +157,7 @@ export const Schedules = () => {
               <SchedulesCard isOpen={isOpen}/>
             </Box>
             }
-            
+
             <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
               <Heading as='h3'>Total: R$ {sun}</Heading>
             </Box>

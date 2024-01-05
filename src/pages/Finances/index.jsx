@@ -1,5 +1,5 @@
 import { Header } from '../../components/Header'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {
   FormControl,
   FormErrorMessage,
@@ -61,6 +61,16 @@ export const Finances = () => {
       })
     } 
   }
+
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      const message = 'Você tem alterações não salvas. Tem certeza que deseja sair?'
+      e.returnValue = message
+      return message
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+  }, [])
   
   const datas = finances.filter((finance) => finance.type === 'Entrada')
   const entrada = datas.reduce((acc, data) => {

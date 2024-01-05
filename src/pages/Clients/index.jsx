@@ -92,6 +92,16 @@ export const Clients = () => {
         theme: 'dark',
       })
     }
+
+    useEffect(() => {
+      const handleBeforeUnload = (e) => {
+        const message = 'Você tem alterações não salvas. Tem certeza que deseja sair?'
+        e.returnValue = message
+        return message
+      };
+  
+      window.addEventListener('beforeunload', handleBeforeUnload)
+    }, [])
   }
 
   return(

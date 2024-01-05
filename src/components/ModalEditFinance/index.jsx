@@ -13,7 +13,7 @@ import {
   Heading,
   Flex,
 } from '@chakra-ui/react'
-import { useContext, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { EditIcon } from '@chakra-ui/icons'
 import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
@@ -77,6 +77,8 @@ export const ModalEditFinance = ({finance_id}) => {
       onClose()
     }
   }
+
+  
 
   return (
     <>
