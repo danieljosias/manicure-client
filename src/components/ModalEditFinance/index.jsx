@@ -19,7 +19,7 @@ import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
 export const ModalEditFinance = ({finance_id}) => {
-  const { updateFinances, listFinances, setFinances }  = useContext(ApiContext)
+  const { updateFinances, listFinances, setFinances, finances }  = useContext(ApiContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -33,14 +33,11 @@ export const ModalEditFinance = ({finance_id}) => {
   const handleDescriptionChange = (e) => setDescription(e.target.value)
   const handleTypeChange = (e) => setType(e.target.value)
   const handleValueChange = (e) => setValue(e.target.value)
-
-  const user_id = 'a1fda0f5-5d66-454d-a811-7df773fca6b0'
   
   const data = {
     description: description.substring(0,1).toUpperCase().concat(description.substring(1)),
     type: type.substring(0,1).toUpperCase().concat(type.substring(1)),
     value: value.substring(0,1).toUpperCase().concat(value.substring(1)),
-    user_id: user_id,
   }
 
   for (const key in data){
@@ -51,34 +48,34 @@ export const ModalEditFinance = ({finance_id}) => {
   }
 
   const handleUpdatesFinances = async () => {
-    if(Object.keys(data).length === 1){
+    if(Object.keys(data).length === 0){
       toast.error("Campo em branco!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
-    }else if(data.description !== '' && data.type !== '' && data.value !== '' ){
-      const res = await updateFinances(data, finance_id)
-    
-      if(res.name !== 'AxiosError'){
+    }else{
       toast.success("Finança atualizada!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
 
-      const response = await listFinances()
-      setFinances(response.data)
+      const idForUpdate = finance_id
+      const newDescription = data.description
+      const newType = data.type
+      const newValue = data.value
+       
+      const financesUpdates = finances.map((finance) =>
+        finance.id === idForUpdate ? { description: newDescription === undefined? finance.description : newDescription, type: newType === undefined? finance.type : newType, value: newValue === undefined? finance.value : newValue} : finance
+      );
+
+      setFinances(financesUpdates)
 
       setDescription('')
       setType('')
       setValue('')
 
       onClose()
-    }else{
-      toast.error("Campo em branco!", {
-        position: toast.POSITION.BOTTOM_CENTER,
-        theme: 'dark',
-      })
-    }}
+    }
   }
 
   return (

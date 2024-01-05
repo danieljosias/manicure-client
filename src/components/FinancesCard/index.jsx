@@ -5,14 +5,7 @@ import { useContext, useEffect } from 'react'
 import { ApiContext } from '../../providers/api'
 
 export const FiancesCard = ({isOpen}) => {
-    const { finances, setFinances } = useContext(ApiContext)
-
-    useEffect(()=>{
-        fetch("http://127.0.0.1:8000/api/finances/")
-        .then((response) => response.json())
-        .then((response) => setFinances(response))
-        .catch((err) => console.log(err))
-    },[])
+    const { finances } = useContext(ApiContext)
 
     return(
         <>

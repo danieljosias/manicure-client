@@ -14,27 +14,26 @@ import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
 export const ModalDeleteFinances = ({finance_id}) => {
-  const { deleteFinances, setFinances, listFinances } = useContext(ApiContext)
+  const { deleteFinances, setFinances, listFinances, finances } = useContext(ApiContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = useRef(null)
   const finalRef = useRef(null)
 
+  const idForDelete = finance_id
+
   const DeleteFinances = async () => {
-      const res = await deleteFinances(finance_id)
-      
-      if(res.name !== 'AxiosError'){
-        toast.success("Finança deletada!", {
-          position: toast.POSITION.BOTTOM_CENTER,
-          theme: 'dark',
-        })
-        const response = await listFinances()
-        setFinances(response.data)
-  
-        onClose()
-      }
-    }
+    toast.success("Finança deletada!", {
+      position: toast.POSITION.BOTTOM_CENTER,
+      theme: 'dark',
+    })
+    const financesDelete = finances.filter((finance) => finance.id !== idForDelete)
+
+    setFinances(financesDelete)
+
+    onClose()   
+  }
   
   return (
     <>

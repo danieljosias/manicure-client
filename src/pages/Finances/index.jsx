@@ -32,25 +32,23 @@ export const Finances = () => {
   const isTypeError = type === ''
   const isValueError = value === ''
 
-  const user_id = 'a1fda0f5-5d66-454d-a811-7df773fca6b0'
-
   const data = {
     description: description.substring(0,1).toUpperCase().concat(description.substring(1)),
     type: type.substring(0,1).toUpperCase().concat(type.substring(1)),
     value: value.substring(0,1).toUpperCase().concat(value.substring(1)),
-    user_id: user_id,
+    id: Math.floor(Date.now() * Math.random()).toString(36),
   }
 
   const handleCreatesFinances = async () => {
-    const res = await createFinances(data)
-    if(res.name !== 'AxiosError'){
+    if(data.description !== '' && data.type !== '' && data.value !== ''){
       toast.success("Finança criada!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
-
-      const response = await listFinances()
-      setFinances(response.data)
+  
+      const newItem = data
+      const newItems = [...finances, newItem]
+      setFinances(newItems)
 
       setDescription('')
       setType('')
@@ -69,7 +67,7 @@ export const Finances = () => {
     return Number(acc) + Number(data.value)
   }, 0)
 
-  const itens = finances.filter((finance) => finance.type === 'Saída')
+  const itens = finances.filter((finance) => finance.type === 'Saída' || finance.type === 'Saida')
   const saida= itens.reduce((acc, itens) => {
     return Number(acc) + Number(itens.value)
   }, 0)
@@ -122,9 +120,16 @@ export const Finances = () => {
           </Box>
 
           <Flex bg='#F3CBCB' flexDirection='column' maxH='500px'  p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
-          <Box overflowY='scroll' bg='#D9D9D9' mb='10px' p='10'>
-            <FiancesCard isOpen={isOpen}/>
-          </Box>
+          
+          {finances?.length === 0?
+            <Flex justifyContent='center' alignItems='center' bg='#D9D9D9' mb='10px' p='10' h='200px'>
+             <Heading as='h3'>Não há Finanças</Heading>
+            </Flex> 
+            :
+            <Box overflowY='scroll' bg='#D9D9D9' mb='10px' p='10'>
+              <FiancesCard isOpen={isOpen}/>
+            </Box>
+            }
 
             <Flex flexDirection='column' justifyContent='space-between' gap='10'>
                 <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
