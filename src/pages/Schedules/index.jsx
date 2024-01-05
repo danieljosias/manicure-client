@@ -42,8 +42,6 @@ export const Schedules = () => {
   const isServiceError = service === ''
   const isPriceError = price === ''
 
-  const user_id = 'a1fda0f5-5d66-454d-a811-7df773fca6b0'
-
   const data = {
     name: name.substring(0,1).toUpperCase().concat(name.substring(1)),
     cellphone: cellphone.substring(0,1).toUpperCase().concat(cellphone.substring(1)),
@@ -51,20 +49,19 @@ export const Schedules = () => {
     hour: hour.substring(0,1).toUpperCase().concat(hour.substring(1)),
     service: service.substring(0,1).toUpperCase().concat(service.substring(1)),
     price: price.substring(0,1).toUpperCase().concat(price.substring(1)),
-    user_id: user_id,
+    id: Math.floor(Date.now() * Math.random()).toString(36),
   }
 
   const handleCreatesSchedules = async () => {
-    const res = await createSchedules(data)
-
-    if(res.name !== 'AxiosError'){
+    if(data.name !== '' && data.cellphone !== '' && data.date !== '' && data.hour !== '' && data.service !== '' && data.price !== ''){
       toast.success("Agendamamento criado!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
 
-      const response = await listSchedules()
-      setSchedules(response.data)
+      const newItem = data
+      const newItems = [...schedules, newItem]
+      setSchedules(newItems)
 
       setName('')
       setCellphone('')
@@ -140,10 +137,17 @@ export const Schedules = () => {
           </Box>
   
           <Flex bg='#F3CBCB' flexDirection='column' maxH='500px'  p='25' gap='20px' borderRadius='0px 10px 0px 10px' >
+            
+            {schedules?.length === 0?
+            <Flex justifyContent='center' alignItems='center' bg='#D9D9D9' mb='10px' p='10' h='200px'>
+             <Heading as='h3'>Não há agendamentos</Heading>
+            </Flex> 
+            :
             <Box overflowY='scroll' bg='#D9D9D9' mb='10px' p='10'>
               <SchedulesCard isOpen={isOpen}/>
             </Box>
-
+            }
+            
             <Box bg='white' p='10' borderRadius='0px 10px 0px 10px'>
               <Heading as='h3'>Total: R$ {sun}</Heading>
             </Box>

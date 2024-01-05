@@ -19,7 +19,7 @@ import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 
 export const ModalEditSchedule = ({schedule_id}) => {
-  const { updateSchedules, listSchedules, setSchedules } = useContext(ApiContext)
+  const { updateSchedules, listSchedules, setSchedules, schedules } = useContext(ApiContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -40,7 +40,6 @@ export const ModalEditSchedule = ({schedule_id}) => {
   const handleServiceChange = (e) => setService(e.target.value)
   const handlePriceChange = (e) => setPrice(e.target.value)
 
-  const user_id = 'a1fda0f5-5d66-454d-a811-7df773fca6b0'
   
   const data = {
     name: name.substring(0,1).toUpperCase().concat(name.substring(1)),
@@ -49,7 +48,6 @@ export const ModalEditSchedule = ({schedule_id}) => {
     hour: hour.substring(0,1).toUpperCase().concat(hour.substring(1)),
     service: service.substring(0,1).toUpperCase().concat(service.substring(1)),
     price: price.substring(0,1).toUpperCase().concat(price.substring(1)),
-    user_id: user_id,
   }
 
   for (const key in data){
@@ -58,23 +56,33 @@ export const ModalEditSchedule = ({schedule_id}) => {
       delete data[key]
     }
   }
+  
 
   const handleUpdatesSchedules = async () => {
-    if(Object.keys(data).length === 1){
+    if(Object.keys(data).length === 0){
       toast.error("Campo em branco!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
-    }else if(data.name !== '' && data.cellphone !== '' && data.date !== '' && data.hour !== '' && data.service !== '' && data.price !== ''){
-      const res = await updateSchedules(data, schedule_id)
-      
-      if(res.name !== 'AxiosError'){
+    }else{
       toast.success("Cliente atualizado!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
-      const response = await listSchedules()
-      setSchedules(response.data)
+
+      const idForUpdate = schedule_id
+      const newName = data.name
+      const newCellphone = data.cellphone
+      const newDate = data.date
+      const newHour = data.hour
+      const newService = data.service
+      const newPrice = data.price
+       
+      const schedulesUpdates = schedules.map((schedule) =>
+        schedule.id === idForUpdate ? { name: newName === undefined? schedule.name : newName, cellphone: newCellphone === undefined? schedule.cellphone : newCellphone, date: newDate === undefined? schedule.date : newDate, hour: newHour === undefined? schedule.hour : newHour, service: newService === undefined? schedule.service : newService, price: newPrice === undefined? schedule.price : newPrice } : schedule
+      );
+
+      setSchedules(schedulesUpdates)
 
       setName('')
       setCellphone('')
@@ -84,12 +92,7 @@ export const ModalEditSchedule = ({schedule_id}) => {
       setPrice('')
       
       onClose()
-    }else{
-      toast.error("Campo em branco!", {
-        position: toast.POSITION.BOTTOM_CENTER,
-        theme: 'dark',
-      })
-    }}
+    }
   }
   
   return (

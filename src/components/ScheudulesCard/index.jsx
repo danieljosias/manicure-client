@@ -5,14 +5,8 @@ import { useContext, useEffect } from 'react'
 import { ApiContext } from '../../providers/api'
 
 export const SchedulesCard = ({isOpen}) => {
-    const { schedules, setSchedules } = useContext(ApiContext)
+    const { schedules } = useContext(ApiContext)
 
-    useEffect(()=>{
-        fetch("http://127.0.0.1:8000/api/schedules/")
-        .then((response) => response.json())
-        .then((response) => setSchedules(response))
-        .catch((err) => console.log(err))
-    },[])
 
     return(
         <>

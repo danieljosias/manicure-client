@@ -91,7 +91,7 @@ export const Clients = () => {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
-      }
+    }
   }
 
   return(

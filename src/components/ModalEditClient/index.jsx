@@ -53,12 +53,12 @@ export const ModalEditClient = ({client_id}) => {
   }
 
   const handleUpdateClients = async () => {
-    if(Object.keys(data).length === 1){
+    if(Object.keys(data).length === 0){
       toast.error("Campo em branco!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
-    }else if(data.name !== '' && data.address !== '' && data.cellphone !== '' && data.observation !== ''){
+    }else{
         toast.success("Cliente atualizado!", {
           position: toast.POSITION.BOTTOM_CENTER,
           theme: 'dark',
@@ -71,7 +71,7 @@ export const ModalEditClient = ({client_id}) => {
        const newObservation = data.observation
        
        const clientsUpdates = clients.map((client) =>
-        client.id === idForUpdate ? { ...client, name: newName, address: newAddress, cellphone: newCellphone, observation: newObservation } : client
+        client.id === idForUpdate ? { ...client, name: newName === undefined? client.name : newName, address: newAddress === undefined? client.address : newAddress, cellphone: newCellphone === undefined? client.cellphone : newCellphone, observation: newObservation === undefined? client.observation : newObservation } : client
       );
 
        setClients(clientsUpdates)
@@ -82,12 +82,7 @@ export const ModalEditClient = ({client_id}) => {
         setObservation('')
   
         onClose()
-      }else{
-        toast.error("Campo em branco!", {
-          position: toast.POSITION.BOTTOM_CENTER,
-          theme: 'dark',
-        })
-    }
+      }
   }
   
   return (
