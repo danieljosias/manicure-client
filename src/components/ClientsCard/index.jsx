@@ -1,13 +1,11 @@
 import { Text, Box, Flex,  Heading, HStack, } from '@chakra-ui/react'
 import { ModalEditClient } from '../../components/ModalEditClient';
 import { ModalDeleteClient } from '../ModalDeleteClient';
-import { useContext } from 'react';
-import { ApiContext } from '../../providers/api';
 import { useSelector } from 'react-redux';
 
 export const ClientsCard = ({isOpen }) => {
     const clients = useSelector((state) => state.clients)
-
+    
     return(
         <>
             {clients?.map((client, i)=>{

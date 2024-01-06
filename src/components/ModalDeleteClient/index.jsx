@@ -8,19 +8,19 @@ import {
   Heading,
   Flex,
 } from '@chakra-ui/react'
-import { useContext, useRef} from 'react'
+import { useRef} from 'react'
 import { DeleteIcon } from '@chakra-ui/icons'
-import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
 import { clientDeleted } from '../../slices/clients/clients'
 import { useDispatch } from 'react-redux'
 
 export const ModalDeleteClient = ({client_id}) => {
-   const { isOpen, onOpen, onClose } = useDisclosure()
-  const dispatch = useDispatch();
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  
   const initialRef = useRef(null)
   const finalRef = useRef(null)
+  
+  const dispatch = useDispatch();
 
   const DeleteClients = async () => {
     toast.success("Cliente deletado!", {

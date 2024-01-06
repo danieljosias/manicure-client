@@ -1,8 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import clientsReducer from "../slices/clients/clients";
 
-export default configureStore({
-  reducer: {
+export const store = configureStore({
+  reducer:  {
     clients: clientsReducer,
   },
-});
+})
+
+
+
+
+
+

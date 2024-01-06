@@ -14,11 +14,11 @@ import {
   Flex,
 } from '@chakra-ui/react'
 
-import { useContext,useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { EditIcon } from '@chakra-ui/icons'
 import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
-import { clientAdded,clientUpdated } from '../../slices/clients/clients'
+import { clientUpdated } from '../../slices/clients/clients'
 import { useDispatch, useSelector } from 'react-redux'
 
 export const ModalEditClient = ({client_id}) => {
@@ -78,7 +78,7 @@ export const ModalEditClient = ({client_id}) => {
         id: client_id,
         })
       )
-      
+
       setName('')
       setAddress('')
       setCellphone('')

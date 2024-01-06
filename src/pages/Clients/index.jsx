@@ -1,5 +1,5 @@
 import { Header } from '../../components/Header'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import {
   FormControl,
   FormErrorMessage,
@@ -15,18 +15,16 @@ import {
 import { IoMdPeople } from 'react-icons/io'
 import { ClientsCard } from '../../components/ClientsCard'
 import { toast } from 'react-toastify'
-import { ApiContext } from '../../providers/api'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { clientAdded } from '../../slices/clients/clients'
 
 export const Clients = () => {
-  /* const { createsClients, setClients, listClients } = useContext(ApiContext) */
   const clients = useSelector((state) => state.clients)
-  const dispatch = useDispatch();
-  const clientsAmount = useSelector((state) => state.clients.length);
 
-  console.log(clients)
+  const dispatch = useDispatch();
+
+  const clientsAmount = useSelector((state) => state.clients.length)
 
   const [isOpen, setIsOpen] = useState(false)
   const [name, setName] = useState('')
@@ -43,21 +41,9 @@ export const Clients = () => {
   const isAddressError = address === ''
   const isCelphoneError = cellphone === ''
   
-  /* const data = {
-    name: name.substring(0,1).toUpperCase().concat(name.substring(1)),
-    address: address.substring(0,1).toUpperCase().concat(address.substring(1)),
-    cellphone: cellphone.substring(0,1).toUpperCase().concat(cellphone.substring(1)),
-    observation: observation.substring(0,1).toUpperCase().concat(observation.substring(1)),
-    id: Math.floor(Date.now() * Math.random()).toString(36),
-  } */
-
   const handleCreatesClients = async () => {
     if( observation === ''){
-      /* for (const key in data) {
-        if(key === 'observation'){
-          data['observation'] = 'Sem observação'
-        }
-      } */
+      
       setObservation('Sem observação')
       
       if(name !== '' && address !== '' && cellphone !== '' ){
@@ -75,10 +61,6 @@ export const Clients = () => {
             id: clientsAmount + 1,
           })
         );
-
-       /*  const newItem = data
-        const newItems = [...clients, newItem]
-        setClients(newItems) */
   
         setName('')
         setAddress('')
@@ -117,16 +99,6 @@ export const Clients = () => {
         theme: 'dark',
       })
     }
-
-    /* useEffect(() => {
-      const handleBeforeUnload = (e) => {
-        const message = 'Você tem alterações não salvas. Tem certeza que deseja sair?'
-        e.returnValue = message
-        return message
-      };
-  
-      window.addEventListener('beforeunload', handleBeforeUnload)
-    }, []) */
   }
 
   return(
