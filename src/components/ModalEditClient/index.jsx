@@ -18,10 +18,10 @@ import { useContext,useRef, useState } from 'react'
 import { EditIcon } from '@chakra-ui/icons'
 import { ApiContext } from '../../providers/api'
 import { toast } from 'react-toastify'
+import { clientAdded,clientUpdated } from '../../slices/clients/clients'
+import { useDispatch, useSelector } from 'react-redux'
 
 export const ModalEditClient = ({client_id}) => {
-  const { setClients, updateClients, listClients, clients } = useContext(ApiContext)
-
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = useRef(null)
@@ -36,53 +36,56 @@ export const ModalEditClient = ({client_id}) => {
   const handleAddressChange = (e) => setAddress(e.target.value)
   const handleCellphoneChange = (e) => setCellphone(e.target.value)
   const handleObservationChange = (e) => setObservation(e.target.value)
-
   
-  const data = {
+  const dispatch = useDispatch();
+  
+  const clients = useSelector((state) =>
+    state.clients.find((client) => client.id === client_id)
+  )
+  
+  /* const data = {
     name: name.substring(0,1).toUpperCase().concat(name.substring(1)),
     address: address.substring(0,1).toUpperCase().concat(address.substring(1)),
     cellphone: cellphone.substring(0,1).toUpperCase().concat(cellphone.substring(1)),
     observation: observation.substring(0,1).toUpperCase().concat(observation.substring(1)),
-  }
+  } */
   
-  for (const key in data){
+  /* for (const key in data){
     `${key}: ${data[key]}`
     if(!data[key]){
       delete data[key]
     }
-  }
+  } */
 
   const handleUpdateClients = async () => {
-    if(Object.keys(data).length === 0){
+    if(name === '' && address === '' && cellphone === '' && observation === ''){
       toast.error("Campo em branco!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
     }else{
-        toast.success("Cliente atualizado!", {
-          position: toast.POSITION.BOTTOM_CENTER,
-          theme: 'dark',
+      toast.success("Cliente atualizado!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: 'dark',
+      }),
+  
+      dispatch(
+        clientUpdated({
+        name,
+        address,
+        cellphone,
+        observation,
+        id: client_id,
         })
-  
-       const idForUpdate = client_id 
-       const newName = data.name
-       const newAddress = data.address
-       const newCellphone = data.cellphone
-       const newObservation = data.observation
-       
-       const clientsUpdates = clients.map((client) =>
-        client.id === idForUpdate ? { ...client, name: newName === undefined? client.name : newName, address: newAddress === undefined? client.address : newAddress, cellphone: newCellphone === undefined? client.cellphone : newCellphone, observation: newObservation === undefined? client.observation : newObservation } : client
-      );
+      )
+      
+      setName('')
+      setAddress('')
+      setCellphone('')
+      setObservation('')
 
-       setClients(clientsUpdates)
-  
-        setName('')
-        setAddress('')
-        setCellphone('')
-        setObservation('')
-  
-        onClose()
-      }
+      onClose()
+    }
   }
   
   return (
