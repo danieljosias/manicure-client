@@ -6,7 +6,7 @@ export const ApiProvider = ({children}) => {
     const [clients, setClients]  = useState([])
     const [schedules, setSchedules]  = useState([])
     const [finances, setFinances]  = useState([])
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    /* const [isAuthenticated, setIsAuthenticated] = useState(false) */
 
     return(
         <ApiContext.Provider 
@@ -17,8 +17,8 @@ export const ApiProvider = ({children}) => {
             setSchedules,
             finances,
             setFinances,
-            isAuthenticated,
-            setIsAuthenticated,
+          /*   isAuthenticated,
+            setIsAuthenticated, */
         }}
         >
             {children}

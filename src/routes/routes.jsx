@@ -3,25 +3,25 @@ import { Signin } from '../pages/Signin'
 import { Clients } from '../pages/Clients'
 import { Schedules } from '../pages/Schedules'
 import { Finances } from '../pages/Finances'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { ApiContext } from '../providers/api'
 
 export const Router = () => {
-    const { isAuthenticated } = useContext(ApiContext)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     return(
         <Routes>
             <Route exact path='/signin' element={<Signin/>}/>
+            <Route path="/clients" element={<Clients />} />
             
-            {isAuthenticated ? (
+           {/*  {isAuthenticated ? (
                 <>
-                    <Route path="/clients" element={<Clients />} />
                     <Route path="/schedules" element={<Schedules />} />
                     <Route path="/finances" element={<Finances />} />
                 </>
             ) : (
                 <Route path="*" element={<Navigate to="/signin" />} />
-            )}
+            )} */}
         </Routes>    
     )
 }

@@ -8,14 +8,14 @@ import {
   Flex,
   IconButton,
 } from '@chakra-ui/react'
-import { ApiContext } from '../../providers/api'
+/* import { ApiContext } from '../../providers/api' */
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { AiFillEye } from "react-icons/ai"
 import { PiEyeClosedBold } from "react-icons/pi";
 
 export const Signin = () =>{
-  const { setIsAuthenticated } = useContext(ApiContext)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   
   const navigate = useNavigate()
   

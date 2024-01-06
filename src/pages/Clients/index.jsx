@@ -16,9 +16,17 @@ import { IoMdPeople } from 'react-icons/io'
 import { ClientsCard } from '../../components/ClientsCard'
 import { toast } from 'react-toastify'
 import { ApiContext } from '../../providers/api'
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { clientAdded } from '../../slices/clients/clients'
 
 export const Clients = () => {
-  const { createsClients, clients, setClients, listClients } = useContext(ApiContext)
+  /* const { createsClients, setClients, listClients } = useContext(ApiContext) */
+  const clients = useSelector((state) => state.clients)
+  const dispatch = useDispatch();
+  const clientsAmount = useSelector((state) => state.clients.length);
+
+  console.log(clients)
 
   const [isOpen, setIsOpen] = useState(false)
   const [name, setName] = useState('')
@@ -35,31 +43,42 @@ export const Clients = () => {
   const isAddressError = address === ''
   const isCelphoneError = cellphone === ''
   
-  const data = {
+  /* const data = {
     name: name.substring(0,1).toUpperCase().concat(name.substring(1)),
     address: address.substring(0,1).toUpperCase().concat(address.substring(1)),
     cellphone: cellphone.substring(0,1).toUpperCase().concat(cellphone.substring(1)),
     observation: observation.substring(0,1).toUpperCase().concat(observation.substring(1)),
     id: Math.floor(Date.now() * Math.random()).toString(36),
-  }
+  } */
 
   const handleCreatesClients = async () => {
-    if( data.observation === ''){
-      for (const key in data) {
+    if( observation === ''){
+      /* for (const key in data) {
         if(key === 'observation'){
           data['observation'] = 'Sem observação'
         }
-      }
+      } */
+      setObservation('Sem observação')
       
-      if(data.name !== '' && data.address !== '' && data.cellphone !== '' ){
+      if(name !== '' && address !== '' && cellphone !== '' ){
         toast.success("Cliente criado!", {
           position: toast.POSITION.BOTTOM_CENTER,
           theme: 'dark',
         })
 
-        const newItem = data
+        dispatch(
+          clientAdded({
+            name,
+            address,
+            cellphone,
+            observation,
+            id: clientsAmount + 1,
+          })
+        );
+
+       /*  const newItem = data
         const newItems = [...clients, newItem]
-        setClients(newItems)
+        setClients(newItems) */
   
         setName('')
         setAddress('')
@@ -72,15 +91,21 @@ export const Clients = () => {
         })
       }
     }
-    else if(data.name !== '' && data.address !== '' && data.cellphone !== '' && data.observation !== ''){
+    else if(name !== '' && address !== '' && cellphone !== '' && observation !== ''){
       toast.success("Cliente criado!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: 'dark',
       })
 
-      const newItem = data
-      const newItems = [...clients, newItem]
-      setClients(newItems)
+      dispatch(
+        clientAdded({
+          name,
+          address,
+          cellphone,
+          observation,
+          id: clientsAmount+ 1,
+        })
+      );
 
       setName('')
       setAddress('')
@@ -93,7 +118,7 @@ export const Clients = () => {
       })
     }
 
-    useEffect(() => {
+    /* useEffect(() => {
       const handleBeforeUnload = (e) => {
         const message = 'Você tem alterações não salvas. Tem certeza que deseja sair?'
         e.returnValue = message
@@ -101,7 +126,7 @@ export const Clients = () => {
       };
   
       window.addEventListener('beforeunload', handleBeforeUnload)
-    }, [])
+    }, []) */
   }
 
   return(
