@@ -16,10 +16,10 @@ const clientsSlice = createSlice({
     
         const existingClient = state.find((client) => client.id === id);
         if (existingClient) {
-          existingClient.name = name;
-          existingClient.address = address;
-          existingClient.cellphone = cellphone;
-          existingClient.observation = observation;
+          existingClient.name = name === ''? existingClient.name : name;
+          existingClient.address = address === ''? existingClient.address : address;
+          existingClient.cellphone = cellphone === ''? existingClient.cellphone : cellphone;
+          existingClient.observation = observation=== ''? existingClient.observation : observation;
         }
     },
     clientDeleted(state, action) {

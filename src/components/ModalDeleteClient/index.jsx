@@ -35,7 +35,6 @@ export const ModalDeleteClient = ({client_id}) => {
     )
 
     onClose()
-    
   }
   
   return (
